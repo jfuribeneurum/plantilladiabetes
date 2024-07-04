@@ -1,0 +1,148 @@
+/* Estilos generales */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Altura total de la ventana */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+form {
+    width: 100%;
+    max-width: 1024px; /* Máximo ancho del formulario */
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-x: auto; /* Permitir desplazamiento horizontal si es necesario */
+    max-height: 100%; /* Altura máxima del formulario */
+    display: flex; /* Usar flexbox para ajustar altura */
+    flex-direction: column; /* Columna para alinear elementos verticalmente */
+}
+
+/* Estilos específicos para campos de información del paciente */
+.form-field.paciente input,
+.form-field.paciente select {
+    max-width: 300px; /* Ancho máximo para campos de información del paciente */
+}
+
+.form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.form-header-left, .form-header-right {
+    flex: 1;
+}
+
+.form-header-center {
+    flex: 2;
+    text-align: center;
+}
+
+.form-header p {
+    margin: 0;
+}
+
+.logo {
+    max-height: 80px;
+}
+
+fieldset {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+legend {
+    font-weight: bold;
+    display: block;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.form-field {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.form-field label {
+    flex: 0 0 150px; /* Ancho fijo para etiquetas */
+    margin-right: 10px; /* Espaciado derecho entre etiqueta y entrada */
+}
+
+.form-field input,
+.form-field select {
+    flex: 1 1 auto; /* Ancho flexible para entradas */
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Estilos para tablas independientes */
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead {
+    background-color: #6a246e;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.styled-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+button {
+    padding: 10px;
+    background-color: #7d2d86;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #6a246e;
+}
+
+
+

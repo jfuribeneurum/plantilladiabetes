@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Especialista en Diabetes</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <main>
+        <form id="diabetesForm">
+            <div class="form-header">
+                <div class="form-header-left">
+                    <img src="assets/images/logo2.png" alt="Logo de la Empresa" class="logo">
+                </div>
+                <div class="form-header-center">
+                    <p>HISTORIA CLÍNICA NEURUM IPS</p>
+                    <p>CC Punto clave Local 203</p>
+                    <p>Cl. 27 #46-70, Medellín</p>
+                </div>
+                <div class="form-header-right">
+                    <p>Historia Clínica</p>
+                </div>
+            </div>
+
+            <fieldset>
+                <legend>Información del Paciente</legend>
+
+                <div class="form-field">
+                    <label for="consultationDate">Fecha de la Consulta:</label>
+                    <input type="date" id="consultationDate" name="consultationDate" required>
+                </div>
+
+                <div class="form-field">
+                    <label for="patientId">Identificación:</label>
+                    <input type="text" id="patientId" name="patientId" required>
+                </div>
+
+                <div class="form-field">
+                    <label for="patientName">Nombre:</label>
+                    <input type="text" id="patientName" name="patientName" required>
+                </div>
+
+                <div class="form-field">
+                    <label for="patientLastname">Apellidos:</label>
+                    <input type="text" id="patientLastname" name="patientLastname" required>
+                </div>
+            </fieldset>
+            
+            <fieldset>
+                <legend>Datos patológicos</legend>
+
+                <div class="form-field">
+                    <label for="diagnosisDate">Fecha diagnóstico:</label>
+                    <input type="date" id="diagnosisDate" name="diagnosisDate" required>
+                </div>
+
+                <div class="form-field">
+                    <label for="diabetesType">Tipo de diabetes:</label>
+                    <select id="diabetesType" name="diabetesType" required>
+                        <option value="">Seleccione...</option>
+                        <option value="none">Ninguno</option>
+                        <option value="type1">Tipo 1</option>
+                        <option value="type2">Tipo 2</option>
+                        <option value="gestational">Gestacional</option>
+                        <option value="other">Otro</option>
+                    </select>
+                </div>
+
+                <div class="form-field">
+                    <label for="patientDebut">Debut:</label>
+                    <input type="text" id="patientDebut" name="patientDebut" required>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Tratamiento</legend>
+                <h2>Agentes orales/ GLP-1</h2>
+
+                <div class="form-field orales-label">
+                    <label for="agentesorales" class="label-text">¿El paciente actualmente está recibiendo agentes orales?</label> 
+                    <select id="agentesorales" name="agentesorales" required>
+                        <option value="">Seleccione...</option>
+                        <option value="siagentes">SI</option>
+                        <option value="noagentes">NO</option>
+                    </select>
+                </div>
+
+                <div id="tablaAgentesOrales" style="display: none;">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Medicamento</th>
+                                <th>Pauta</th>
+                                <th>Desde</th>
+                                <th>Hasta</th>
+                                <th>Adherencia</th>
+                                <th>Causa abandono</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>01/07/2024</td>
+                                <td>Sildenafil</td>
+                                <td>2x al día</td>
+                                <td>01/01/2024</td>
+                                <td>31/12/2024</td>
+                                <td>
+                                    <select class="select-option">
+                                        <option value="yes">Sí</option>
+                                        <option value="no">No</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="select-option">
+                                        <option value="order">Orden Médica</option>
+                                        <option value="administrative">Administrativo</option>
+                                        <option value="patient">Decisión paciente</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2>Basal</h2>
+                <div class="form-field insulina-label">
+                    <label for="insulina" class="insulina">¿El paciente actualmente está recibiendo insulina?</label> 
+                    <select id="insulina" name="insulina" required>
+                        <option value="">Seleccione...</option>
+                        <option value="siinsulina">SI</option>
+                        <option value="noinsulina">NO</option>
+                    </select>
+                </div>
+
+                <div id="tablainsulina" style="display: none;">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Tipo</th>
+                                <th>AD</th>
+                                <th>DD</th>
+                                <th>AA</th>
+                                <th>DA</th>
+                                <th>AC</th>
+                                <th>DC</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>01/07/2024</td>
+                                <td>Insulina Regular</td>
+                                <td>
+                                    <select class="select-option">
+                                        <option value="yes">Sí</option>
+                                        <option value="no">No</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="select-option">
+                                        <option value="yes">Sí</option>
+                                        <option value="no">No</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="select-option">
+                                        <option value="yes">Sí</option>
+                                        <option value="no">No</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="select-option">
+                                        <option value="yes">Sí</option>
+                                        <option value="no">No</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="select-option">
+                                        <option value="yes">Sí</option>
+                                        <option value="no">No</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="select-option">
+                                        <option value="yes">Sí</option>
+                                        <option value="no">No</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+
+                <br>
+                <br>
+                <br>
+                <label for="insulinaPrandial" class="insulinaPrandial">¿El paciente se ajusta su insulina?</label>
+                <select id="insulinaPrandial" class="select-option">
+                    <option value="">Seleccione...</option>
+                    <option value="yes">Sí</option>
+                    <option value="no">No</option>
+                </select>
+                <br>
+                <br>
+                <br>
+                <div class="form-field insulinaPrandial-label" id="estrategiaNutricional" style="display: none;">
+                    <h2>Prandial</h2>
+                    <label for="insulinaPrandial" class="insulinaPrandial">Tipo de estrategia nutricional</label> 
+                    <select id="insulinaPrandialSelect" name="insulinaPrandial" required>
+                        <option value="">Seleccione...</option>
+                        <option value="fija">Fija</option>
+                        <option value="basica">Básica</option>
+                        <option value="conteo">Conteo</option>
+                    </select>
+                    <br>
+                    <br>
+                    <label for="typeinsulina">Tipo de insulina:</label>
+                    <input type="text" id="typeinsulina" name="typeinsulina" required>
+                </div>
+                
+                <div class="form-field insulinaPrandial-label" id="insulinaPrandialTabla" style="display: none;">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Temporlidad</th>
+                                <th>Entre comidas</th>
+                                <th>Correcciones</th>
+                                <th>AD</th>
+                                <th>DD</th>
+                                <th>AA</th>
+                                <th>DA</th>
+                                <th>AC</th>
+                                <th>DC</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>01/07/2024</td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <select class="select-option">
+                                        <option value="">Seleccione...</option>
+                                        <option value="Pre">Preprandial</option>
+                                        <option value="Post">Postprandial</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="select-option">
+                                        <option value="yes">Sí</option>
+                                        <option value="no">No</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="select-option">
+                                        <option value="yes">Sí</option>
+                                        <option value="no">No</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="select-option">
+                                        <option value="yes">Sí</option>
+                                        <option value="no">No</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="select-option">
+                                        <option value="yes">Sí</option>
+                                        <option value="no">No</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>En caso de conteo de carbohidratos en el apartado de los momentos del día colocar R: Índice insulina/CHOs y S: Factor de corrección</p>
+                </div>
+
+                <h2>Bombas de insulina</h2>
+                <div>
+                    <label for="Bombainsulina" class="Bombainsulina">¿El paciente actualmente tiene bomba de insulina</label>
+                    <select id="Bombainsulina" class="select-option">
+                        <option value="">Seleccione...</option>
+                        <option value="yes">Sí</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label for="instalacionDate">Fecha de instalación de la bomba:</label>
+                    <input type="date" id="instalacionDate" name="instalacionDate" required>
+                </div>
+
+                <div>
+                    <label for="cambioDate">Fecha de cambio:</label>
+                    <input type="date" id="cambioDate" name="cambioDate" required>
+                </div>
+
+                <div>
+                    <label for="indicacion">Indicación:</label>
+                    <input type="text" id="indicacion" name="indicacion" required>
+                </div>
+
+                <div>
+                    <label for="estadoEmbarazo">Estado de embarazo en el momento de instalación de la bomba:</label>
+                    <input type="text" id="estadoEmbarazo" name="estadoEmbarazo" required>
+                </div>
+
+                <div>
+                    <label for="marca">Marca:</label>
+                    <input type="text" id="marca" name="marca" required>
+                </div>
+
+                <div>
+                    <label for="analogoin">Análogo de insulina utilizada:</label>
+                    <input type="text" id="analogoin" name="analogoin" required>
+                </div>
+
+                <div>
+                    <label for="tiempoActivo">Tiempo de insulina activa:</label>
+                    <input type="text" id="tiempoActivo" name="tiempoActivo" required>
+                </div>
+
+                <div>
+                    <label for="obstruccionCateter">¿Obstrucción del catéter?:</label>
+                    <input type="text" id="obstruccionCateter" name="obstruccionCateter" required>
+                </div>
+
+                <div>
+                    <label for="numObstrucciones">Número de obstrucciones:</label>
+                    <input type="text" id="numObstrucciones" name="numObstrucciones" required>
+                </div>
+
+                <div>
+                    <label for="alergiaSensor">¿Alergia al sensor?:</label>
+                    <input type="text" id="alergiaSensor" name="alergiaSensor" required>
+                </div>
+                
+            </fieldset>
+
+            <button type="submit">Enviar</button>
+        </form>
+    </main>
+    
+    <script>
+        // Espera a que el documento esté completamente cargado
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mostrar tabla de agentes orales si cambia el valor
+            document.getElementById('agentesorales').addEventListener('change', function() {
+                var table = document.getElementById('tablaAgentesOrales');
+                table.style.display = this.value === 'siagentes' ? 'block' : 'none';
+            });
+
+            // Mostrar tabla de insulina si cambia el valor
+            document.getElementById('insulina').addEventListener('change', function() {
+                var table = document.getElementById('tablainsulina');
+                table.style.display = this.value === 'siinsulina' ? 'block' : 'none';
+            });
+
+            // Mostrar estrategia nutricional si cambia la selección de ajuste de insulina
+            document.getElementById('insulinaPrandial').addEventListener('change', function() {
+                var div = document.getElementById('estrategiaNutricional');
+                div.style.display = this.value === 'yes' ? 'block' : 'none';
+
+                var div2 = document.getElementById('insulinaPrandialTabla');
+                div2.style.display = this.value === 'yes' ? 'block' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>
