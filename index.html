@@ -23,29 +23,40 @@
                 </div>
             </div>
 
+            <!-- Bloque de formulario para la información del paciente -->
             <fieldset>
                 <legend>Información del Paciente</legend>
-
+            
                 <div class="form-field">
                     <label for="consultationDate">Fecha de la Consulta:</label>
                     <input type="date" id="consultationDate" name="consultationDate" required>
                 </div>
-
+            
                 <div class="form-field">
                     <label for="patientId">Identificación:</label>
                     <input type="text" id="patientId" name="patientId" required>
                 </div>
-
+            
+                <div class="form-field age-field">
+                    <label for="ageYears">Edad:</label>
+                    <input type="number" id="ageYears" name="ageYears" placeholder="Años" required>
+                    <input type="number" id="ageMonths" name="ageMonths" placeholder="Meses" required>
+                </div>
+            
                 <div class="form-field">
                     <label for="patientName">Nombre:</label>
                     <input type="text" id="patientName" name="patientName" required>
                 </div>
-
+            
                 <div class="form-field">
                     <label for="patientLastname">Apellidos:</label>
                     <input type="text" id="patientLastname" name="patientLastname" required>
                 </div>
             </fieldset>
+            
+            
+            
+
             
             <fieldset>
                 <legend>Datos patológicos</legend>
@@ -72,7 +83,7 @@
                     <input type="text" id="patientDebut" name="patientDebut" required>
                 </div>
             </fieldset>
-
+            
             <fieldset>
                 <legend>Tratamiento</legend>
                 <h2>Agentes orales/ GLP-1</h2>
@@ -85,14 +96,16 @@
                         <option value="noagentes">NO</option>
                     </select>
                 </div>
-
+                
                 <div id="tablaAgentesOrales" style="display: none;">
                     <table class="styled-table">
                         <thead>
                             <tr>
                                 <th>Fecha</th>
                                 <th>Medicamento</th>
+                                <th>Cantidad</th>
                                 <th>Pauta</th>
+                                <th>Temporalidad</th>
                                 <th>Desde</th>
                                 <th>Hasta</th>
                                 <th>Adherencia</th>
@@ -101,9 +114,30 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>01/07/2024</td>
-                                <td>Sildenafil</td>
-                                <td>2x al día</td>
+                                <td><input type="date" id="consultationDate" name="consultationDate" required></td>
+                                <td><select id="agentesorales" name="agentesorales" required>
+                                    <option value="">Seleccione...</option>
+                                    <option value="acido_fenofibrico_rosuvastatina_135_20">ACIDO FENOFIBRICO 135 MG + ROSUVASTATINA 20 MG</option>
+                                    <option value="acido_salicilico_100">ACIDO SALICILICO 100 MG</option>
+                                    <option value="amlodipina_10">AMLODIPINA 10 MG TABLETA</option>
+                                    <option value="amlodipina_5">AMLODIPINA 5 MG TABLETA</option>
+                                    <option value="atorvastatina_20">ATORVASTATINA 20 MG</option>
+                                    <option value="atorvastatina_20_ezetimibe_10">ATORVASTATINA 20 MG + EZETIMIBE 10 MG</option>
+                                    <option value="atorvastatina_40">ATORVASTATINA 40 MG</option>
+                                    <option value="atorvastatina_40_ezetimibe_10">ATORVASTATINA 40 MG + EZETIMIBE 10 MG</option>
+                                    <option value="atorvastatina_80">ATORVASTATINA 80 MG</option>
+                                    <option value="bisoprolol_10">BISOPROLOL 10 MG TABLETA</option>
+                                </select></td>
+                                <td><input type="number" name="AD" min="0" max="1000" step="1" required></td>
+                                <td>Cada</td>
+                                <td><select name="tiempo" id="tiempo">
+                                    <option value="">Seleccione...</option>
+                                    <option value="horas" selected>Horas</option>
+                                    <option value="dias">Días</option>
+                                    <option value="semanas">Semanas</option>
+                                    <option value="meses">Meses</option>
+                                    </select>
+                                </td>
                                 <td>01/01/2024</td>
                                 <td>31/12/2024</td>
                                 <td>
@@ -117,14 +151,15 @@
                                         <option value="order">Orden Médica</option>
                                         <option value="administrative">Administrativo</option>
                                         <option value="patient">Decisión paciente</option>
+                                        <option value="patient">Evento adverso</option>
                                     </select>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
+                    <p><u>Si = el paciente es adherente + del 80%</u></p>
                 </div>
 
-                <h2>Basal</h2>
                 <div class="form-field insulina-label">
                     <label for="insulina" class="insulina">¿El paciente actualmente está recibiendo insulina?</label> 
                     <select id="insulina" name="insulina" required>
@@ -135,6 +170,7 @@
                 </div>
 
                 <div id="tablainsulina" style="display: none;">
+                    <h2>Basal</h2>
                     <table class="styled-table">
                         <thead>
                             <tr>
@@ -152,42 +188,12 @@
                             <tr>
                                 <td>01/07/2024</td>
                                 <td>Insulina Regular</td>
-                                <td>
-                                    <select class="select-option">
-                                        <option value="yes">Sí</option>
-                                        <option value="no">No</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select class="select-option">
-                                        <option value="yes">Sí</option>
-                                        <option value="no">No</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select class="select-option">
-                                        <option value="yes">Sí</option>
-                                        <option value="no">No</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select class="select-option">
-                                        <option value="yes">Sí</option>
-                                        <option value="no">No</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select class="select-option">
-                                        <option value="yes">Sí</option>
-                                        <option value="no">No</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select class="select-option">
-                                        <option value="yes">Sí</option>
-                                        <option value="no">No</option>
-                                    </select>
-                                </td>
+                                <td><input type="number" name="AD" min="0" max="1000" step="1" required></td>
+                                <td><input type="number" name="DD" min="0" max="1000" step="1" required></td>
+                                <td><input type="number" name="AA" min="0" max="1000" step="1" required></td>
+                                <td><input type="number" name="DA" min="0" max="1000" step="1" required></td>
+                                <td><input type="number" name="AC" min="0" max="1000" step="1" required></td>
+                                <td><input type="number" name="DC" min="0" max="1000" step="1" required></td>
                             </tr>
                             
                         </tbody>
@@ -240,8 +246,8 @@
                         <tbody>
                             <tr>
                                 <td>01/07/2024</td>
-                                <td></td>
-                                <td></td>
+                                <td>Por definir</td>
+                                <td>Por definir</td>
                                 <td>
                                     <select class="select-option">
                                         <option value="">Seleccione...</option>
@@ -249,36 +255,18 @@
                                         <option value="Post">Postprandial</option>
                                     </select>
                                 </td>
-                                <td>
-                                    <select class="select-option">
-                                        <option value="yes">Sí</option>
-                                        <option value="no">No</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select class="select-option">
-                                        <option value="yes">Sí</option>
-                                        <option value="no">No</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select class="select-option">
-                                        <option value="yes">Sí</option>
-                                        <option value="no">No</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select class="select-option">
-                                        <option value="yes">Sí</option>
-                                        <option value="no">No</option>
-                                    </select>
-                                </td>
+                                <td><input type="number" name="AD" min="0" max="1000" step="1" required></td>
+                                <td><input type="number" name="AD" min="0" max="1000" step="1" required></td>
+                                <td><input type="number" name="AD" min="0" max="1000" step="1" required></td>
+                                <td><input type="number" name="AD" min="0" max="1000" step="1" required></td>
+                                <td><input type="number" name="AD" min="0" max="1000" step="1" required></td>
+                                <td><input type="number" name="AD" min="0" max="1000" step="1" required></td>
                             </tr>
                         </tbody>
                     </table>
                     <p>En caso de conteo de carbohidratos en el apartado de los momentos del día colocar R: Índice insulina/CHOs y S: Factor de corrección</p>
                 </div>
-
+<!--
                 <h2>Bombas de insulina</h2>
                 <div>
                     <label for="Bombainsulina" class="Bombainsulina">¿El paciente actualmente tiene bomba de insulina</label>
@@ -343,7 +331,7 @@
 
             <button type="submit">Enviar</button>
         </form>
-    </main>
+    </main> -->
     
     <script>
         // Espera a que el documento esté completamente cargado

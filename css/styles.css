@@ -18,7 +18,7 @@ main {
 
 form {
     width: 100%;
-    max-width: 1024px; /* Máximo ancho del formulario */
+    max-width: 1360px; /* Máximo ancho del formulario */
     background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -32,7 +32,7 @@ form {
 /* Estilos específicos para campos de información del paciente */
 .form-field.paciente input,
 .form-field.paciente select {
-    max-width: 300px; /* Ancho máximo para campos de información del paciente */
+    width: 1px; /* Ancho máximo para campos de información del paciente */
 }
 
 .form-header {
@@ -60,89 +60,98 @@ form {
 }
 
 fieldset {
-    border: 1px solid #ddd;
-    padding: 10px;
+    border: 2px solid #7d2d86;
+    border-radius: 8px;
+    padding: 20px;
     margin-bottom: 20px;
+    background-color: #f9f9f9;
 }
 
 legend {
+    font-size: 1.5em;
     font-weight: bold;
-    display: block;
-    text-align: center;
-    margin-bottom: 10px;
+    color: #7d2d86;
+    padding: 0 10px;
 }
 
 .form-field {
     margin-bottom: 15px;
-    display: flex;
-    align-items: center;
 }
 
 .form-field label {
-    flex: 0 0 150px; /* Ancho fijo para etiquetas */
-    margin-right: 10px; /* Espaciado derecho entre etiqueta y entrada */
+    display: inline-block;
+    width: 150px;
+    margin-right: 10px;
+    text-align: left;
 }
 
 .form-field input,
 .form-field select {
-    flex: 1 1 auto; /* Ancho flexible para entradas */
     padding: 8px;
     border: 1px solid #ddd;
     border-radius: 4px;
     box-sizing: border-box;
+    width: 100%;
+    max-width: 300px; /* Ancho máximo para evitar que se vean muy extendidos */
 }
 
-/* Estilos para tablas independientes */
+.form-field input[type="number"],
+.form-field input[type="date"] {
+    width: auto; /* Ajusta automáticamente el ancho según el contenido */
+}
+
+@media (max-width: 600px) {
+    .form-field label {
+        display: block;
+        width: 100%;
+        text-align: left;
+        margin-bottom: 5px;
+    }
+}
+
 .styled-table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 20px;
-    font-size: 0.9em;
-    font-family: 'Arial', sans-serif;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    margin-top: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 .styled-table thead {
-    background-color: #6a246e;
-    color: #ffffff;
-    text-align: left;
-    font-weight: bold;
+    background-color: #7d2d86;
+    color: white;
 }
 
 .styled-table th,
 .styled-table td {
     padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
 }
 
-.styled-table tbody tr {
-    border-bottom: 1px solid #dddddd;
-}
-
-.styled-table tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
-}
-
-.styled-table tbody tr:last-of-type {
-    border-bottom: 2px solid #009879;
+.styled-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
 }
 
 .styled-table tbody tr:hover {
-    background-color: #f1f1f1;
+    background-color: #f2f2f2;
 }
 
-button {
-    padding: 10px;
-    background-color: #7d2d86;
-    color: white;
-    border: none;
+.styled-table select {
+    padding: 8px;
+    border: 1px solid #ddd;
     border-radius: 4px;
-    cursor: pointer;
-    margin-top: 20px;
+    background-color: #f0f0f0;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-button:hover {
-    background-color: #6a246e;
-}
+
+
+
+
 
 
 
