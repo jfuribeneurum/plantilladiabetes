@@ -232,7 +232,7 @@
                         <thead>
                             <tr>
                                 <th>Fecha</th>
-                                <th>Temporlidad</th>
+                                <th>Temporalidad</th>
                                 <th>Entre comidas</th>
                                 <th>Correcciones</th>
                                 <th>AD</th>
@@ -266,97 +266,159 @@
                     </table>
                     <p>En caso de conteo de carbohidratos en el apartado de los momentos del día colocar R: Índice insulina/CHOs y S: Factor de corrección</p>
                 </div>
-<!--
+
+                
                 <h2>Bombas de insulina</h2>
-                <div>
-                    <label for="Bombainsulina" class="Bombainsulina">¿El paciente actualmente tiene bomba de insulina</label>
-                    <select id="Bombainsulina" class="select-option">
+                    
+                <div class="form-field">
+                    <label for="Bombainsulina">¿El paciente actualmente tiene bomba de insulina?</label>
+                    <select id="Bombainsulina" class="select-option" name="Bombainsulina" onchange="toggleInsulinPumpFields()">
                         <option value="">Seleccione...</option>
                         <option value="yes">Sí</option>
                         <option value="no">No</option>
                     </select>
                 </div>
+        
+                <div id="insulinPumpFields" style="display: none;">
+                    <div class="form-field">
+                        <label for="instalacionDate">Fecha de instalación de la bomba:</label>
+                        <input type="date" id="instalacionDate" name="instalacionDate" required>
+                    </div>
+                    
+                    <div class="form-field">
+                        <label for="cambioDate">Fecha de cambio:</label>
+                        <input type="date" id="cambioDate" name="cambioDate" required>
+                    </div>
+                    
+                    <div class="form-field">
+                        <label for="indicacion">Indicación:</label>
+                        <select id="Bombainsulina" class="select-option" name="Bombainsulina" onchange="toggleInsulinPumpFields()">
+                            <option value="">Seleccione...</option>
+                            <option value="yes">Mal control glucémico</option>
+                            <option value="no">Fenómeno del alba</option>
+                            <option value="no">Hipoglucemias frecuentes</option>
+                            <option value="no">Gastroparesia diabética</option>
+                            <option value="no">Otros</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-field">
+                        <label for="estadoEmbarazo">Estado de embarazo en el momento de instalación de la bomba:</label>
+                        <select id="Bombainsulina" class="select-option" name="Bombainsulina" onchange="toggleInsulinPumpFields()">
+                            <option value="">Seleccione...</option>
+                            <option value="yes">Sí</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-field">
+                        <label for="marca">Marca:</label>
+                        <select id="Bombainsulina" class="select-option" name="Bombainsulina" onchange="toggleInsulinPumpFields()">
+                            <option value="">Seleccione...</option>
+                            <option value="yes">MedTronic</option>
+                            <option value="no">OmniPod</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-field">
+                        <label for="analogoin">Análogo de insulina utilizada:</label>
+                        <select id="Bombainsulina" class="select-option" name="Bombainsulina" onchange="toggleInsulinPumpFields()">
+                            <option value="">Seleccione...</option>
+                            <option value="yes">Regular</option>
+                            <option value="no">Aspart</option>
+                            <option value="no">Lispro</option>
+                            <option value="no">Glulisina</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-field">
+                        <label for="tiempoActivo">Tiempo de insulina activa (horas):</label>
+                        <input type="number" name="AD" min="0" max="1000" step="1" required>
+                    </div>
+                    
+                    <div class="form-field">
+                        <label for="obstruccionCateter">¿Obstrucción del catéter?:</label>
+                        <select id="obstruccionCateter" class="select-option" name="obstruccionCateter" onchange="toggleCateterObstructionFields()">
+                            <option value="">Seleccione...</option>
+                            <option value="yes">Sí</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                    
+                    <div id="cateterObstructionFields" style="display: none;">
+                        <div class="form-field">
+                            <label for="numObstrucciones">Número de obstrucciones:</label>
+                            <input type="text" id="numObstrucciones" name="numObstrucciones" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-field">
+                        <label for="alergiaSensor">¿Alergia al sensor?:</label>
+                        <select id="obstruccionCateter" class="select-option" name="obstruccionCateter" onchange="toggleCateterObstructionFields()">
+                            <option value="">Seleccione...</option>
+                            <option value="yes">Sí</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                </div>
                 
-                <div>
-                    <label for="instalacionDate">Fecha de instalación de la bomba:</label>
-                    <input type="date" id="instalacionDate" name="instalacionDate" required>
-                </div>
-
-                <div>
-                    <label for="cambioDate">Fecha de cambio:</label>
-                    <input type="date" id="cambioDate" name="cambioDate" required>
-                </div>
-
-                <div>
-                    <label for="indicacion">Indicación:</label>
-                    <input type="text" id="indicacion" name="indicacion" required>
-                </div>
-
-                <div>
-                    <label for="estadoEmbarazo">Estado de embarazo en el momento de instalación de la bomba:</label>
-                    <input type="text" id="estadoEmbarazo" name="estadoEmbarazo" required>
-                </div>
-
-                <div>
-                    <label for="marca">Marca:</label>
-                    <input type="text" id="marca" name="marca" required>
-                </div>
-
-                <div>
-                    <label for="analogoin">Análogo de insulina utilizada:</label>
-                    <input type="text" id="analogoin" name="analogoin" required>
-                </div>
-
-                <div>
-                    <label for="tiempoActivo">Tiempo de insulina activa:</label>
-                    <input type="text" id="tiempoActivo" name="tiempoActivo" required>
-                </div>
-
-                <div>
-                    <label for="obstruccionCateter">¿Obstrucción del catéter?:</label>
-                    <input type="text" id="obstruccionCateter" name="obstruccionCateter" required>
-                </div>
-
-                <div>
-                    <label for="numObstrucciones">Número de obstrucciones:</label>
-                    <input type="text" id="numObstrucciones" name="numObstrucciones" required>
-                </div>
-
-                <div>
-                    <label for="alergiaSensor">¿Alergia al sensor?:</label>
-                    <input type="text" id="alergiaSensor" name="alergiaSensor" required>
-                </div>
-                
-            </fieldset>
 
             <button type="submit">Enviar</button>
         </form>
-    </main> -->
+    </main> 
     
     <script>
-        // Espera a que el documento esté completamente cargado
+        function toggleInsulinPumpFields() {
+            const insulinPumpSelect = document.getElementById('Bombainsulina');
+            const insulinPumpFields = document.getElementById('insulinPumpFields');
+            
+            if (insulinPumpSelect.value === 'yes') {
+                insulinPumpFields.style.display = 'block';
+            } else {
+                insulinPumpFields.style.display = 'none';
+            }
+        }
+    
+        function toggleCateterObstructionFields() {
+            const cateterObstructionSelect = document.getElementById('obstruccionCateter');
+            const cateterObstructionFields = document.getElementById('cateterObstructionFields');
+            
+            if (cateterObstructionSelect.value === 'yes') {
+                cateterObstructionFields.style.display = 'block';
+            } else {
+                cateterObstructionFields.style.display = 'none';
+                document.getElementById('numObstrucciones').value = ''; // Limpiar el valor del campo de texto
+            }
+        }
+    
         document.addEventListener('DOMContentLoaded', function() {
             // Mostrar tabla de agentes orales si cambia el valor
             document.getElementById('agentesorales').addEventListener('change', function() {
                 var table = document.getElementById('tablaAgentesOrales');
                 table.style.display = this.value === 'siagentes' ? 'block' : 'none';
             });
-
+    
             // Mostrar tabla de insulina si cambia el valor
             document.getElementById('insulina').addEventListener('change', function() {
                 var table = document.getElementById('tablainsulina');
                 table.style.display = this.value === 'siinsulina' ? 'block' : 'none';
             });
-
+    
             // Mostrar estrategia nutricional si cambia la selección de ajuste de insulina
             document.getElementById('insulinaPrandial').addEventListener('change', function() {
                 var div = document.getElementById('estrategiaNutricional');
                 div.style.display = this.value === 'yes' ? 'block' : 'none';
-
+    
                 var div2 = document.getElementById('insulinaPrandialTabla');
                 div2.style.display = this.value === 'yes' ? 'block' : 'none';
             });
+    
+            // Inicializar estado de visibilidad de campos según la carga inicial
+            toggleInsulinPumpFields();
+            toggleCateterObstructionFields();
         });
     </script>
+    
+    
 </body>
 </html>
