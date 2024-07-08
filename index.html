@@ -19,7 +19,7 @@
                     <p>Cl. 27 #46-70, Medellín</p>
                 </div>
                 <div class="form-header-right">
-                    <p>Historia Clínica</p>
+                    <p>Historia Clínica Diabetes</p>
                 </div>
             </div>
 
@@ -114,7 +114,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td><input type="date" id="consultationDate" name="consultationDate" required></td>
+                                <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
                                 <td><select id="agentesorales" name="agentesorales" required>
                                     <option value="">Seleccione...</option>
                                     <option value="acido_fenofibrico_rosuvastatina_135_20">ACIDO FENOFIBRICO 135 MG + ROSUVASTATINA 20 MG</option>
@@ -128,7 +128,7 @@
                                     <option value="atorvastatina_80">ATORVASTATINA 80 MG</option>
                                     <option value="bisoprolol_10">BISOPROLOL 10 MG TABLETA</option>
                                 </select></td>
-                                <td><input type="number" name="AD" min="0" max="1000" step="1" required></td>
+                                <td class="form-field"><input type="number" name="AD" min="0" max="1000" step="1" required></td>
                                 <td>Cada</td>
                                 <td><select name="tiempo" id="tiempo">
                                     <option value="">Seleccione...</option>
@@ -138,8 +138,8 @@
                                     <option value="meses">Meses</option>
                                     </select>
                                 </td>
-                                <td>01/01/2024</td>
-                                <td>31/12/2024</td>
+                                <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
+                                <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
                                 <td>
                                     <select class="select-option">
                                         <option value="yes">Sí</option>
@@ -186,14 +186,14 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>01/07/2024</td>
-                                <td>Insulina Regular</td>
-                                <td><input type="number" name="AD" min="0" max="1000" step="1" required></td>
-                                <td><input type="number" name="DD" min="0" max="1000" step="1" required></td>
-                                <td><input type="number" name="AA" min="0" max="1000" step="1" required></td>
-                                <td><input type="number" name="DA" min="0" max="1000" step="1" required></td>
-                                <td><input type="number" name="AC" min="0" max="1000" step="1" required></td>
-                                <td><input type="number" name="DC" min="0" max="1000" step="1" required></td>
+                                <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
+                                <td class="form-field">Insulina Regular</td>
+                                <td class="form-field"><input type="number" name="AD" min="0" max="1000" step="1" required></td>
+                                <td class="form-field"><input type="number" name="DD" min="0" max="1000" step="1" required></td>
+                                <td class="form-field"><input type="number" name="AA" min="0" max="1000" step="1" required></td>
+                                <td class="form-field"><input type="number" name="DA" min="0" max="1000" step="1" required></td>
+                                <td class="form-field"><input type="number" name="AC" min="0" max="1000" step="1" required></td>
+                                <td class="form-field"><input type="number" name="DC" min="0" max="1000" step="1" required></td>
                             </tr>
                             
                         </tbody>
@@ -202,14 +202,14 @@
 
                 <br>
                 <br>
-                <br>
+                <div class="form-field insulina-label">
                 <label for="insulinaPrandial" class="insulinaPrandial">¿El paciente se ajusta su insulina?</label>
-                <select id="insulinaPrandial" class="select-option">
+                <select id="insulinaPrandial" class="form-field">
                     <option value="">Seleccione...</option>
                     <option value="yes">Sí</option>
                     <option value="no">No</option>
                 </select>
-                <br>
+                </div>
                 <br>
                 <br>
                 <div class="form-field insulinaPrandial-label" id="estrategiaNutricional" style="display: none;">
@@ -245,7 +245,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>01/07/2024</td>
+                                <td><input type="date" id="consultationDate" name="consultationDate" required></td>
                                 <td>Por definir</td>
                                 <td>Por definir</td>
                                 <td>
@@ -361,6 +361,80 @@
                         </select>
                     </div>
                 </div>
+
+                <h2>Actividad física</h2>
+                <div id="tablaAtividadfisica" style="">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Duración</th>
+                                <th>frecuencia</th>
+                                <th>Tipo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
+                                <td><select id="horasActividadFisica" class="select-option" name="horasActividadFisica">
+                                    <option value="">Seleccione...</option>
+                                    <!-- Generar opciones de 0 a 24 horas -->
+                                    </select></td>
+                                <td><select id="frecuenciaActividad" name="frecuenciaActividad" class="select-option">
+                                    <option value="">Seleccione...</option>
+                                    <option value="diario">Diario</option>
+                                    <option value="semanal">Semanal</option>
+                                    <option value="mensual">Mensual</option>
+                                    <option value="anual">Anual</option>
+                                    </select></td>
+                                <td class="form-field">
+                                    <input type="text" id="patientName" name="patientName" required>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2>Nutrición</h2>
+                <div id="tablaAtividadfisica" style="">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>No. Comidas al día</th>
+                                <th>Apetito</th>
+                                <th>Ansiedad</th>
+                                <th>Cual</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
+                                <td> <select id="numComidas" class="select-option" name="numComidas">
+                                    <option value="">Seleccione...</option>
+                                    <!-- Generar opciones de 1 a 6 comidas -->
+                                    <script>
+                                        for (let i = 1; i <= 20; i++) {
+                                            document.write(`<option value="${i}">${i}</option>`);
+                                        }
+                                    </script>
+                                </select></td>
+                                <td><select id="opciones">
+                                    <option value="">Seleccione una opción...</option>
+                                    <option value="platoCompleto">Plato completo</option>
+                                    <option value="medioPlato">Medio Plato</option>
+                                    <option value="cuartoPlato">1/4 del plato</option>
+                                    </select></td>
+                                <td class="form-field">
+                                    <input type="text" id="patientName" name="patientName" required>
+                                </td>
+                                <td class="form-field">
+                                    <input type="text" id="patientName" name="patientName" required>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
                 
 
             <button type="submit">Enviar</button>
@@ -368,6 +442,18 @@
     </main> 
     
     <script>
+        // Función para generar opciones de 0 a 24 horas
+        document.addEventListener('DOMContentLoaded', function() {
+            const horasActividadFisicaSelect = document.getElementById('horasActividadFisica');
+            for (let i = 0; i <= 6; i++) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.textContent = i;
+                horasActividadFisicaSelect.appendChild(option);
+            }
+        });
+    
+        // Función para mostrar/ocultar campos relacionados con la bomba de insulina
         function toggleInsulinPumpFields() {
             const insulinPumpSelect = document.getElementById('Bombainsulina');
             const insulinPumpFields = document.getElementById('insulinPumpFields');
@@ -379,6 +465,7 @@
             }
         }
     
+        // Función para mostrar/ocultar campos relacionados con la obstrucción del catéter
         function toggleCateterObstructionFields() {
             const cateterObstructionSelect = document.getElementById('obstruccionCateter');
             const cateterObstructionFields = document.getElementById('cateterObstructionFields');
@@ -391,20 +478,18 @@
             }
         }
     
+        // Función para manejar eventos de cambio en los selectores y tablas
         document.addEventListener('DOMContentLoaded', function() {
-            // Mostrar tabla de agentes orales si cambia el valor
             document.getElementById('agentesorales').addEventListener('change', function() {
                 var table = document.getElementById('tablaAgentesOrales');
                 table.style.display = this.value === 'siagentes' ? 'block' : 'none';
             });
     
-            // Mostrar tabla de insulina si cambia el valor
             document.getElementById('insulina').addEventListener('change', function() {
                 var table = document.getElementById('tablainsulina');
                 table.style.display = this.value === 'siinsulina' ? 'block' : 'none';
             });
     
-            // Mostrar estrategia nutricional si cambia la selección de ajuste de insulina
             document.getElementById('insulinaPrandial').addEventListener('change', function() {
                 var div = document.getElementById('estrategiaNutricional');
                 div.style.display = this.value === 'yes' ? 'block' : 'none';
@@ -417,7 +502,10 @@
             toggleInsulinPumpFields();
             toggleCateterObstructionFields();
         });
+
+        
     </script>
+    
     
     
 </body>
