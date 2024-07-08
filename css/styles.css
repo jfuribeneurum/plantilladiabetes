@@ -165,6 +165,12 @@ button[type="submit"]:hover {
     background-color: #5c1e5c; /* Color corporativo más oscuro al pasar el mouse */
 }
 
+textarea {
+    width:700px;
+    height: 100px;
+    margin-top: 10px;
+}
+
 
 
 

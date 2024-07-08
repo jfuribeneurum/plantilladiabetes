@@ -435,6 +435,137 @@
                         </tbody>
                     </table>
                 </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Enfermedad activa</legend>
+                <h2>Enfermedad actual</h2>
+                <br>
+                <p>Motivo de consulta: <br>(ingreso- control de diabetes) 
+                    Revisión por sistemas.
+                    </p>
+                    <p>pendiente definir campos</p>
+                <h2>Signos vitales</h2>
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Presión Arterial (mmHg)</th>
+                            <th>Frecuencia Cardiaca (LPM)</th>
+                            <th>Frecuencia Respiratoria (RPM)</th>
+                            <th>Temperatura (ºC)</th>
+                            <th>Saturación de Oxigeno (%)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
+                            <td class="form-field"><input type="number" name="AD" min="0" max="1000" step="1" required></td>
+                            <td class="form-field"><input type="number" name="AD" min="0" max="1000" step="1" required></td>
+                            <td class="form-field"><input type="number" name="AD" min="0" max="1000" step="1" required></td>
+                            <td class="form-field"><input type="number" name="AD" min="0" max="1000" step="1" required></td>
+                            <td class="form-field"><input type="number" name="AD" min="0" max="1000" step="1" required></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+               
+                
+
+                <br>
+                <h2>Examen fisico</h2>
+                <table>
+                    <tr>
+                        <td><label for="fechaConsulta">Fecha de Consulta:</label></td>
+                        <td class="form-field"><input type="date" id="fechaConsulta" name="fechaConsulta" required></td>
+                    </tr>
+
+                    <tr>
+                        <td><label for="descripcion">Ojos:</label></td>
+                        <td><textarea id="descripcion" name="descripcion" rows="4" required></textarea></td>
+                    </tr>
+                    <tr>
+                        <td><label for="cabezaOrl">Cabeza y ORL:</label></td>
+                        <td><textarea id="cabezaOrl" name="cabezaOrl" rows="4"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td><label for="cuello">Cuello:</label></td>
+                        <td><textarea id="cuello" name="cuello" rows="4"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td><label for="torax">Tórax:</label></td>
+                        <td><textarea id="torax" name="torax" rows="4"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td><label for="abdomen">Abdomen:</label></td>
+                        <td><textarea id="abdomen" name="abdomen" rows="4"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td><label for="genitourinario">Genitourinario:</label></td>
+                        <td><textarea id="genitourinario" name="genitourinario" rows="4"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td><label for="osteomuscular">Osteomuscular:</label></td>
+                        <td><textarea id="osteomuscular" name="osteomuscular" rows="4"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td><label for="piel">Piel:</label></td>
+                        <td><textarea id="piel" name="piel" rows="4"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td><label for="neurologico">Neurológico:</label></td>
+                        <td><textarea id="neurologico" name="neurologico" rows="4"></textarea></td>
+                    </tr>
+                    <tr>
+                       
+                    </tr>
+                </table>
+            </fieldset>
+
+            <fieldset>
+                <legend>Complicaciones Microvasculares</legend>
+                <h2>Retinopatía diabética</h2>
+                <div id="tablaAtividadfisica" style="">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>No. Comidas al día</th>
+                                <th>Apetito</th>
+                                <th>Ansiedad</th>
+                                <th>Cual</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
+                                <td> <select id="numComidas" class="select-option" name="numComidas">
+                                    <option value="">Seleccione...</option>
+                                    <!-- Generar opciones de 1 a 6 comidas -->
+                                    <script>
+                                        for (let i = 1; i <= 20; i++) {
+                                            document.write(`<option value="${i}">${i}</option>`);
+                                        }
+                                    </script>
+                                </select></td>
+                                <td><select id="opciones">
+                                    <option value="">Seleccione una opción...</option>
+                                    <option value="platoCompleto">Plato completo</option>
+                                    <option value="medioPlato">Medio Plato</option>
+                                    <option value="cuartoPlato">1/4 del plato</option>
+                                    </select></td>
+                                <td class="form-field">
+                                    <input type="text" id="patientName" name="patientName" required>
+                                </td>
+                                <td class="form-field">
+                                    <input type="text" id="patientName" name="patientName" required>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </fieldset>
+                
                 
 
             <button type="submit">Enviar</button>
