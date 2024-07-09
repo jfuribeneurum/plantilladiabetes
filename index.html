@@ -523,37 +523,77 @@
             </fieldset>
 
             <fieldset>
-                <legend>Complicaciones Microvasculares</legend>
+                <legend>Complicaciones y Factores de Riesgo</legend>
+                <h2 class="sombreado">Complicaciones microvasculares</h2>
                 <h2>Retinopatía diabética</h2>
                 <div id="tablaAtividadfisica" style="">
                     <table class="styled-table">
                         <thead>
                             <tr>
                                 <th>Fecha</th>
-                                <th>No. Comidas al día</th>
-                                <th>Apetito</th>
-                                <th>Ansiedad</th>
-                                <th>Cual</th>
+                                <th>Fecha ultima Evaluación oftalmología</th>
+                                <th>Dx de Retinopatía </th>
+                                <th>Edema macular</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
-                                <td> <select id="numComidas" class="select-option" name="numComidas">
-                                    <option value="">Seleccione...</option>
-                                    <!-- Generar opciones de 1 a 6 comidas -->
-                                    <script>
-                                        for (let i = 1; i <= 20; i++) {
-                                            document.write(`<option value="${i}">${i}</option>`);
-                                        }
-                                    </script>
-                                </select></td>
+                                <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
                                 <td><select id="opciones">
                                     <option value="">Seleccione una opción...</option>
-                                    <option value="platoCompleto">Plato completo</option>
-                                    <option value="medioPlato">Medio Plato</option>
-                                    <option value="cuartoPlato">1/4 del plato</option>
+                                    <option value="platoCompleto">Proliferativa</option>
+                                    <option value="medioPlato">No proliferativa</option>
+                                    <option value="cuartoPlato">Sin retinopatia</option>
                                     </select></td>
+                                <td class="form-field">
+                                    <select id="opciones">
+                                        <option value="">Seleccione una opción...</option>
+                                        <option value="platoCompleto">Si</option>
+                                        <option value="medioPlato">No</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h2>Nefropatía diabética</h2>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>TRR</th>
+                                <th>Trasplante </th>
+                                <th>Creatinina</th>
+                                <th>TFG</th>
+                                <th>Albuminuria</th>
+                                <th>Clasificación</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
+                                <td class="form-field">
+                                    <select id="opciones">
+                                        <option value="">Seleccione una opción...</option>
+                                        <option value="platoCompleto">Hemodiálisis</option>
+                                        <option value="medioPlato">Peritoneal</option>
+                                        <option value="cuartoPlato">No</option>
+                                        </select>
+                                </td>
+                                <td class="form-field">
+                                    <select id="opciones">
+                                        <option value="">Seleccione una opción...</option>
+                                        <option value="platoCompleto">Si</option>
+                                        <option value="cuartoPlato">No</option>
+                                        </select>
+                                </td>
+                                <td class="form-field">
+                                    <input type="text" id="patientName" name="patientName" required>
+                                </td>
+                                <td class="form-field">
+                                    <input type="text" id="patientName" name="patientName" required>
+                                </td>
                                 <td class="form-field">
                                     <input type="text" id="patientName" name="patientName" required>
                                 </td>
@@ -564,10 +604,446 @@
                         </tbody>
                     </table>
                 </div>
+                <h2>Neuropatía diabética</h2>
+                <div class="form-field">
+                    <label for="patientName">Tiene diagnóstico de neuropatía sensitiva:</label>
+                        <select id="opciones">
+                        <option value="">Seleccione una opción...</option>
+                        <option value="platoCompleto">Si</option>
+                        <option value="cuartoPlato">No</option>
+                        </select>
+                </div>
+                <div class="form-field">
+                    <label for="patientName">Otras Neuropatías: </label>
+                        <select id="opciones">
+                            <option value="">Seleccione una opción...</option>
+                            <option value="platoCompleto">Si</option>
+                            <option value="cuartoPlato">No</option>
+                        </select>
+                </div>
+                <div class="form-field">
+                    <label for="patientName">Otras Neuropatías: </label>
+                        <select id="opciones">
+                        <option value="">Seleccione una opción...</option>
+                        <option value="platoCompleto">Disfunción eréctil </option>
+                        <option value="cuartoPlato">Gastroparesia</option>
+                        <option value="cuartoPlato">Disautonomía </option>
+                        <option value="cuartoPlato">Hipotensión ortostática</option>
+                        </select>
+                </div>
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Síntomas</th>
+                            <th>Intensidad</th>
+                            <th>Localización</th>
+                            <th>Disfunción eréctil</th>
+                            <th>Monofilamento</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
+                            <td><select id="opciones">
+                                <option value="">Seleccione una opción...</option>
+                                <option value="platoCompleto">Parestesia</option>
+                                <option value="medioPlato">Disestesia</option>
+                                <option value="cuartoPlato">Anestesia</option>
+                                <option value="cuartoPlato">Dolor</option>
+                                </select></td>
+                            <td class="form-field">
+                                <select id="opciones">
+                                    <option value="">Escala del dolor</option>
+                                    <!-- Generar opciones de 1 a 6 comidas -->
+                                    <script>
+                                        for (let i = 1; i <= 10; i++) {
+                                            document.write(`<option value="${i}">${i}</option>`);
+                                        }
+                                    </script>
+                                </select>
+                            </td>
+                            <td class="form-field">
+                                <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                            <td class="form-field">
+                                <select id="opciones">
+                                    <option value="">Seleccione una opción...</option>
+                                    <option value="platoCompleto">Si</option>
+                                    <option value="medioPlato">No</option>
+                                </select>
+                            </td>
+                            <td class="form-field">
+                                <select id="opciones">
+                                    <option value="">Seleccione una opción...</option>
+                                    <option value="platoCompleto">Positivo</option>
+                                    <option value="medioPlato">sensible</option>
+                                    <option value="medioPlato">Negativo</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h2>Pie diabético</h2>
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Deformidad</th>
+                            <th>Antecedente de ulcera</th>
+                            <th>Ulcera activa</th>
+                            <th>Antecedente de amputación</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
+                            <td class="form-field">
+                                <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                            <td class="form-field">
+                                <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                            <td class="form-field">
+                                <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                            <td><select id="opciones">
+                                <option value="">Seleccione una opción...</option>
+                                <option value="platoCompleto">Dedos</option>
+                                <option value="medioPlato">Antepié</option>
+                                <option value="cuartoPlato">Infra condílea</option>
+                                <option value="cuartoPlato">Supra condílea</option>
+                                </select></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h2 class="sombreado">Complicaciones macrovasculares</h2>
+                <h2>Enfermedad Coronaria</h2>
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Dx de enfermedad coronaria (Fecha)</th>
+                            <th>Revascularizado</th>
+                            <th>Síntomas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
+                            <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
+                            <td class="form-field">
+                                <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                            <td><select id="opciones">
+                                <option value="">Seleccione una opción...</option>
+                                <option value="platoCompleto">Disnea</option>
+                                <option value="medioPlato">Angina</option>
+                                <option value="cuartoPlato">Bendopnea</option>
+                                <option value="cuartoPlato">Edemas</option>
+                                </select></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h2>Insuficiencia cardiaca</h2>
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Dx de IC</th>
+                            <th>FEVI</th>
+                            <th>Strain</th>
+                            <th>Sintomas</th>
+                            <th>Clase funcional NYHA</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
+                            <td class="form-field">
+                                <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                            <td class="form-field">
+                                <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                            <td class="form-field">
+                                <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                            <td><select id="opciones">
+                                <option value="">Seleccione una opción...</option>
+                                <option value="platoCompleto">Disnea</option>
+                                <option value="medioPlato">Angina</option>
+                                <option value="cuartoPlato">Bendopnea</option>
+                                <option value="cuartoPlato">Edemas</option>
+                                </select></td>
+                             <td class="form-field">
+                                    <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h2>Enfermedad neurológica</h2>
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Dx de ACV</th>
+                            <th>Tipo de ACV</th>
+                            <th>Revascularizado</th>
+                            <th>Secuelas</th>
+                            <th>Tipo de secuelas</th>
+                            <th>Isquemia Cerebral transitoria (fecha)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
+                            <td class="form-field">
+                                <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                            <td class="form-field">
+                                <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                            <td class="form-field">
+                                <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                            <td class="form-field">
+                                <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                             <td class="form-field">
+                                    <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                            <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h2>Fibrilación Auricular</h2>
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Dx de FA</th>
+                            <th>Tipo de FA</th>
+                            <th>Anticoagulación</th>
+                            <th>Ablación</th>
+                            <th>Marcapasos</th>
+                            <th>Fecha ultima ekg</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
+                            <td class="form-field">
+                                <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                            <td class="form-field">
+                                <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                            <td class="form-field">
+                                <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                            <td class="form-field">
+                                <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                             <td class="form-field">
+                                    <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                            <td class="form-field">
+                                <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h2>Enfermedad vascular periférica</h2>
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Dx de EAP</th>
+                            <th>Revascularizado</th>
+                            <th>Pulsos</th>
+                            <th>Claudicación </th>
+                            <th>Marcapasos</th>
+                            <th>Antecedente de amputación (Lugar)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
+                            <td class="form-field">
+                                <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                            <td class="form-field">
+                                <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                            <td class="form-field">
+                                <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                            <td class="form-field">
+                                <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                             <td class="form-field">
+                                    <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                            <td><select id="opciones">
+                                <option value="">Seleccione una opción...</option>
+                                <option value="platoCompleto">Dedos</option>
+                                <option value="medioPlato">Antepié</option>
+                                <option value="cuartoPlato">Infra condílea</option>
+                                <option value="cuartoPlato">Supra condílea</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h2 class="sombreado">Factores De Riesgo Asociados</h2>
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>HTA fecha</th>
+                            <th>Dislipidemia fecha</th>
+                            <th>Esteatosis Hepática</th>
+                            <th>FIB 4</th>
+                            <th>SAHOS</th>
+                            <th>Tabaquismo (IPA)</th>
+                            <th>Obesidad (IMC)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
+                            <td class="form-field">
+                                <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                            <td class="form-field">
+                                <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                            <td class="form-field">
+                                <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                            <td class="form-field">
+                                <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                             <td class="form-field">
+                                    <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                            <td class="form-field">
+                                <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                            <td class="form-field">
+                                <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a href="https://www.mdcalc.com/calc/2200/fibrosis-4-fib-4-index-liver-fibrosis" target="_blank" class="styled-link">Calculadora de índice FIB-4 en MDCalc</a>
+                <h2 class="sombreado">Comorbilidades</h2>
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Comorbilidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
+                            <td class="form-field">
+                                <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+
+            <fieldset>
+                <legend>Control Metabolico</legend>
+                <h2 class="sombreado">Paraclínicos</h2>
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Glicemia</th>
+                            <th>TSH</th>
+                            <th>HB</th>
+                            <th>Plaquetas</th>
+                            <th>Leucocitos</th>
+                            <th>AST</th>
+                            <th>ALT</th>
+                            <th>Colesterol Total</th>
+                            <th>HDL</th>
+                            <th>LDL</th>
+                            <th>Triglicéridos</th>
+                            <th>Otros</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
+                            <td class="form-field">
+                                <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                            <td class="form-field">
+                                <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                            <td class="form-field">
+                                <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                            <td class="form-field">
+                                <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                            <td class="form-field">
+                                <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                            <td class="form-field">
+                                <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                            <td class="form-field">
+                                <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                            <td class="form-field">
+                                <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                            <td class="form-field">
+                                <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                            <td class="form-field">
+                                <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                            <td class="form-field">
+                                <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                            <td class="form-field">
+                                <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h2 class="sombreado">Control Metabolico</h2>
+                <h2>HbA1c</h2>
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>HbA1c</th>
+                            <th>Interpretación</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
+                            <td class="form-field">
+                                <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                            <td class="form-field">
+                                <input type="text" id="patientName" name="patientName" required>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </fieldset>
                 
-                
-
             <button type="submit">Enviar</button>
         </form>
     </main> 

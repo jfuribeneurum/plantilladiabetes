@@ -171,6 +171,31 @@ textarea {
     margin-top: 10px;
 }
 
+.sombreado{
+    background-color: #7d2d86;
+    color: white;
+    border-radius: 5px;
+    margin-top:30px;
+    margin-bottom: 50px;
+    width: 390px;
+
+}
+
+.styled-link {
+    display: inline-block;
+    background-color: #7d2d86; /* Color corporativo */
+    margin-top: 15px;
+    color: white; /* Color del texto */
+    padding: 10px 20px; /* Espaciado interno */
+    border-radius: 4px; /* Borde redondeado */
+    text-decoration: none; /* Sin subrayado */
+    font-size: 16px; /* Tamaño de fuente */
+    transition: background-color 0.3s ease; /* Transición suave para el hover */
+}
+
+.styled-link:hover {
+    background-color: #5a215d; /* Versión más oscura del color corporativo para el hover */
+}
 
 
 
