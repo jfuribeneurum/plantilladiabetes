@@ -1020,8 +1020,10 @@
                         </tr>
                     </tbody>
                 </table>
+
                 <h2 class="sombreado">Control Metabolico</h2>
                 <h2>HbA1c</h2>
+                
                 <table class="styled-table">
                     <thead>
                         <tr>
@@ -1055,7 +1057,6 @@
                             <th>PAR</th>
                             <th>PER</th>
                             <th>PDR</th>
-                            <th>Interpretación</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -1082,16 +1083,17 @@
                             <td class="form-field">
                                 <input type="text" id="patientName" name="patientName" required>
                             </td>
-                            <td class="form-field">
-                                <input type="text" id="patientName" name="patientName" required>
-                            </td>
                         </tr>
                     </tbody>
                 </table>
-                <div class="form-field">
-                    <label for="patientName">Interpretacion:</label>
-                    <td><textarea id="cuello" name="cuello" rows="4"></textarea></td>
-                </div>
+
+                <table>
+                    <tr>
+                        <td><label for="descripcion">Interpretacion:</label></td>
+                        <td><textarea id="descripcion" name="descripcion" rows="4" required></textarea></td>
+                    </tr>
+                </table>
+
                 <h2>MCG</h2>
                 <div class="form-field">
                     <label for="patientName">Tipo:</label>
@@ -1145,10 +1147,14 @@
                         </tr>
                     </tbody>
                 </table>
-                <div class="form-field">
-                    <label for="patientName">Interpretacion:</label>
-                    <td><textarea id="cuello" name="cuello" rows="4"></textarea></td>
-                </div>
+
+             <table> 
+                <tr>
+                    <td><label for="descripcion">Interpretacion:</label></td>
+                    <td><textarea id="descripcion" name="descripcion" rows="4" required></textarea></td>
+                </tr>
+            </table>  
+
             </fieldset>
 
             <fieldset>
