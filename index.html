@@ -622,7 +622,7 @@
                         </select>
                 </div>
                 <div class="form-field">
-                    <label for="patientName">Otras Neuropatías: </label>
+                    <label for="patientName">Tipo de neuropatía: </label>
                         <select id="opciones">
                         <option value="">Seleccione una opción...</option>
                         <option value="platoCompleto">Disfunción eréctil </option>
@@ -1336,6 +1336,57 @@
                         </tr>
                     </tbody>
                 </table>
+            </fieldset>
+
+            <fieldset>
+                <legend>Metas</legend>
+                <h2 class="Metas Propuestas">Metas Propuestas</h2>
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th>Presión Arterial</th>
+                            <th>Glucosa en Ayunas</th>
+                            <th>Glucosa 2 horas post prandial</th>
+                            <th>HbA1c</th>
+                            <th>LDL</th>
+                            <th>Ganancia de peso en DMG</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="form-field"><input type="text" id="presionArterial" name="presionArterial"></td>
+                            <td class="form-field"><input type="text" id="glucosaAyunas" name="glucosaAyunas"></td>
+                            <td class="form-field"><input type="text" id="glucosaPostPrandial" name="glucosaPostPrandial"></td>
+                            <td class="form-field"><input type="text" id="hba1c" name="hba1c"></td>
+                            <td class="form-field"><input type="text" id="ldl" name="ldl"></td>
+                            <td class="form-field"><input type="text" id="gananciaPesoDMG" name="gananciaPesoDMG"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+            </fieldset>
+
+            <fieldset>
+                <legend>Conducta</legend>
+                <h2 class="Metas Propuestas">Plan y Analisis</h2>
+                <td><textarea id="torax" name="torax" rows="4"></textarea></td>
+                <div class="form-field">
+                    <label for="patientName">Firma profesional :</label>
+                    <input type="text" id="patientName" name="patientName" required>
+                </div>
+                <div class="form-field">
+                    <label for="patientName">Registro:</label>
+                    <input type="text" id="patientName" name="patientName" required>
+                </div>
+                <div class="form-field">
+                    <label for="patientName">Cédula:</label>
+                    <input type="text" id="patientName" name="patientName" required>
+                </div>
+                <div class="form-field">
+                    <label for="patientName">Especialidad:</label>
+                    <input type="text" id="patientName" name="patientName" required>
+                </div>
+                
             </fieldset>
                 
             <button type="submit">Enviar</button>
