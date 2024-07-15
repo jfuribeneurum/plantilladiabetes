@@ -164,6 +164,8 @@
                             </tr>
                         </tbody>
                     </table>
+                    <button type="button" id="addRowBtn" class="addmedi">Agregar</button>
+                    <button type="submit" class="addmedi">Editar</button>
                     <p><u>Si = el paciente es adherente + del 80%</u></p>
                 </div>
 
@@ -1407,6 +1409,62 @@
     </main> 
     
     <script>
+
+        document.addEventListener('DOMContentLoaded', function() {
+                const causaAbandonoSelects = document.querySelectorAll('.causa-abandono');
+                const observacionColumns = document.querySelectorAll('.observacion-column');
+                const observacionColumnTitle = document.querySelector('.observacion-column-title');
+
+                causaAbandonoSelects.forEach(select => {
+                    select.addEventListener('change', function() {
+                        const row = this.closest('tr');
+                        const observacionColumn = row.querySelector('.observacion-column');
+
+                        if (this.value === 'adverse_event') {
+                            observacionColumn.style.display = 'table-cell';
+                            observacionColumnTitle.style.display = 'table-cell';
+                        } else {
+                            observacionColumn.style.display = 'none';
+                            const anyVisible = Array.from(observacionColumns).some(column => column.style.display === 'table-cell');
+                            if (!anyVisible) {
+                                observacionColumnTitle.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+
+        const addRowBtn = document.getElementById('addRowBtn');
+        addRowBtn.addEventListener('click', function() {
+            const tableBody = document.querySelector('.styled-table tbody');
+            const lastRow = tableBody.querySelector('tr:last-child');
+            const newRow = lastRow.cloneNode(true);
+
+            // Limpiar los valores de los campos en la nueva fila
+            newRow.querySelectorAll('input').forEach(input => input.value = '');
+            newRow.querySelectorAll('select').forEach(select => select.selectedIndex = 0);
+
+            tableBody.appendChild(newRow);
+
+            // Reasignar los eventos de cambio a los nuevos selects en la fila clonada
+            newRow.querySelectorAll('.causa-abandono').forEach(select => {
+                select.addEventListener('change', function() {
+                    const row = this.closest('tr');
+                    const observacionColumn = row.querySelector('.observacion-column');
+
+                    if (this.value === 'adverse_event') {
+                        observacionColumn.style.display = 'table-cell';
+                        observacionColumnTitle.style.display = 'table-cell';
+                    } else {
+                        observacionColumn.style.display = 'none';
+                        const anyVisible = Array.from(observacionColumns).some(column => column.style.display === 'table-cell');
+                        if (!anyVisible) {
+                            observacionColumnTitle.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });
+    });
 
     document.addEventListener('DOMContentLoaded', function() {
             const causaAbandonoSelects = document.querySelectorAll('.causa-abandono');
