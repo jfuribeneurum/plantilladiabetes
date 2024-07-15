@@ -18,7 +18,7 @@ main {
 
 form {
     width: 100%;
-    max-width: 1360px; /* Máximo ancho del formulario */
+    max-width: 1600px; /* Máximo ancho del formulario */
     background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -166,19 +166,18 @@ button[type="submit"]:hover {
 }
 
 textarea {
-    width:700px;
+    width: 700px;
     height: 100px;
     margin-top: 10px;
 }
 
-.sombreado{
+.sombreado {
     background-color: #7d2d86;
     color: white;
     border-radius: 5px;
-    margin-top:30px;
+    margin-top: 30px;
     margin-bottom: 50px;
     width: 390px;
-
 }
 
 .styled-link {
@@ -197,6 +196,13 @@ textarea {
     background-color: #5a215d; /* Versión más oscura del color corporativo para el hover */
 }
 
+.observacion-column {
+    display: none;
+}
+
+.observacion-column-title {
+    display: none;
+}
 
 
 

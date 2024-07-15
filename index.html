@@ -110,32 +110,36 @@
                                 <th>Hasta</th>
                                 <th>Adherencia</th>
                                 <th>Causa abandono</th>
+                                <th class="observacion-column-title">Observación</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
-                                <td><select id="agentesorales" name="agentesorales" required>
-                                    <option value="">Seleccione...</option>
-                                    <option value="acido_fenofibrico_rosuvastatina_135_20">ACIDO FENOFIBRICO 135 MG + ROSUVASTATINA 20 MG</option>
-                                    <option value="acido_salicilico_100">ACIDO SALICILICO 100 MG</option>
-                                    <option value="amlodipina_10">AMLODIPINA 10 MG TABLETA</option>
-                                    <option value="amlodipina_5">AMLODIPINA 5 MG TABLETA</option>
-                                    <option value="atorvastatina_20">ATORVASTATINA 20 MG</option>
-                                    <option value="atorvastatina_20_ezetimibe_10">ATORVASTATINA 20 MG + EZETIMIBE 10 MG</option>
-                                    <option value="atorvastatina_40">ATORVASTATINA 40 MG</option>
-                                    <option value="atorvastatina_40_ezetimibe_10">ATORVASTATINA 40 MG + EZETIMIBE 10 MG</option>
-                                    <option value="atorvastatina_80">ATORVASTATINA 80 MG</option>
-                                    <option value="bisoprolol_10">BISOPROLOL 10 MG TABLETA</option>
-                                </select></td>
+                                <td>
+                                    <select id="agentesorales" name="agentesorales" required>
+                                        <option value="">Seleccione...</option>
+                                        <option value="acido_fenofibrico_rosuvastatina_135_20">ACIDO FENOFIBRICO 135 MG + ROSUVASTATINA 20 MG</option>
+                                        <option value="acido_salicilico_100">ACIDO SALICILICO 100 MG</option>
+                                        <option value="amlodipina_10">AMLODIPINA 10 MG TABLETA</option>
+                                        <option value="amlodipina_5">AMLODIPINA 5 MG TABLETA</option>
+                                        <option value="atorvastatina_20">ATORVASTATINA 20 MG</option>
+                                        <option value="atorvastatina_20_ezetimibe_10">ATORVASTATINA 20 MG + EZETIMIBE 10 MG</option>
+                                        <option value="atorvastatina_40">ATORVASTATINA 40 MG</option>
+                                        <option value="atorvastatina_40_ezetimibe_10">ATORVASTATINA 40 MG + EZETIMIBE 10 MG</option>
+                                        <option value="atorvastatina_80">ATORVASTATINA 80 MG</option>
+                                        <option value="bisoprolol_10">BISOPROLOL 10 MG TABLETA</option>
+                                    </select>
+                                </td>
                                 <td class="form-field"><input type="number" name="AD" min="0" max="1000" step="1" required></td>
                                 <td>Cada</td>
-                                <td><select name="tiempo" id="tiempo">
-                                    <option value="">Seleccione...</option>
-                                    <option value="horas" selected>Horas</option>
-                                    <option value="dias">Días</option>
-                                    <option value="semanas">Semanas</option>
-                                    <option value="meses">Meses</option>
+                                <td>
+                                    <select name="tiempo" id="tiempo">
+                                        <option value="">Seleccione...</option>
+                                        <option value="horas" selected>Horas</option>
+                                        <option value="dias">Días</option>
+                                        <option value="semanas">Semanas</option>
+                                        <option value="meses">Meses</option>
                                     </select>
                                 </td>
                                 <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
@@ -147,12 +151,15 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <select class="select-option">
+                                    <select class="select-option causa-abandono">
                                         <option value="order">Orden Médica</option>
                                         <option value="administrative">Administrativo</option>
                                         <option value="patient">Decisión paciente</option>
-                                        <option value="patient">Evento adverso</option>
+                                        <option value="adverse_event">Evento adverso</option>
                                     </select>
+                                </td>
+                                <td class="observacion-column">
+                                    <input type="text" name="observacion" placeholder="Escriba la observación">
                                 </td>
                             </tr>
                         </tbody>
@@ -348,7 +355,7 @@
                     <div id="cateterObstructionFields" style="display: none;">
                         <div class="form-field">
                             <label for="numObstrucciones">Número de obstrucciones:</label>
-                            <input type="text" id="numObstrucciones" name="numObstrucciones" required>
+                            <input type="number" id="numObstrucciones" name="numObstrucciones" placeholder="Pendiente definir tipo de dato" required>
                         </div>
                     </div>
                     
@@ -1400,6 +1407,30 @@
     </main> 
     
     <script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+            const causaAbandonoSelects = document.querySelectorAll('.causa-abandono');
+            const observacionColumns = document.querySelectorAll('.observacion-column');
+            const observacionColumnTitle = document.querySelector('.observacion-column-title');
+
+            causaAbandonoSelects.forEach(select => {
+                select.addEventListener('change', function() {
+                    const row = this.closest('tr');
+                    const observacionColumn = row.querySelector('.observacion-column');
+
+                    if (this.value === 'adverse_event') {
+                        observacionColumn.style.display = 'table-cell';
+                        observacionColumnTitle.style.display = 'table-cell';
+                    } else {
+                        observacionColumn.style.display = 'none';
+                        const anyVisible = Array.from(observacionColumns).some(column => column.style.display === 'table-cell');
+                        if (!anyVisible) {
+                            observacionColumnTitle.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });
 
 
 
