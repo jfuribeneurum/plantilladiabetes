@@ -1,3 +1,4 @@
+/* CSS */
 /* Estilos generales */
 html, body {
     height: 100%;
@@ -93,6 +94,8 @@ legend {
     box-sizing: border-box;
     width: 100%;
     max-width: 300px; /* Ancho máximo para evitar que se vean muy extendidos */
+    font-size: 14px; /* Reducir tamaño de fuente */
+    margin: 2px 0; /* Reducir margen */
 }
 
 .form-field input[type="number"],
@@ -112,11 +115,12 @@ legend {
 .styled-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
+    margin-top: 10px; /* Reducir margen superior */
     background-color: #ffffff;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Reducir sombra */
+    font-size: 14px; /* Reducir tamaño de fuente */
 }
 
 .styled-table thead {
@@ -126,7 +130,7 @@ legend {
 
 .styled-table th,
 .styled-table td {
-    padding: 12px 15px;
+    padding: 8px 10px; /* Reducir padding */
     text-align: center;
     border-bottom: 1px solid #ddd;
 }
@@ -140,28 +144,26 @@ legend {
 }
 
 .styled-table select {
-    padding: 8px;
+    padding: 6px; /* Reducir padding */
     border: 1px solid #ddd;
     border-radius: 4px;
     background-color: #f0f0f0;
     width: 100%;
     box-sizing: border-box;
+    font-size: 14px; /* Reducir tamaño de fuente */
 }
 
-/* Estilos para el botón de enviar */
-button[type="submit"] {
+button[type="submit"], .addmedi {
     background-color: #7d2d86; /* Color corporativo */
     color: white; /* Color del texto */
-    padding: 12px 20px; /* Espaciado interno */
+    padding: 10px 16px; /* Reducir padding */
     border: none; /* Sin borde */
-    border-radius: 14px; /* Borde redondeado */
+    border-radius: 12px; /* Reducir borde redondeado */
     cursor: pointer; /* Cursor al pasar el mouse */
-    font-size: 16px; /* Tamaño de fuente */
-    margin-top: 20px; /* Espacio superior */
-    width: 100%;
+    font-size: 14px; /* Reducir tamaño de fuente */
 }
 
-button[type="submit"]:hover {
+button[type="submit"]:hover, .addmedi:hover {
     background-color: #5c1e5c; /* Color corporativo más oscuro al pasar el mouse */
 }
 
@@ -204,9 +206,26 @@ textarea {
     display: none;
 }
 
+.botonesmedi {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px; /* Espacio entre botones */
+    margin-top: 10px; /* Reducir espacio superior */
+}
 
+.botonesmedi button {
+    width: auto; /* Ajuste automático del ancho */
+}
 
+/* Estilo para resaltar la fila seleccionada */
+.highlighted-row {
+    background-color: #f0f0f0; /* Color de fondo */
+    border: 2px solid #7d2d86; /* Borde resaltado */
+}
 
+.hidden {
+    display: none;
+}
 
 
 

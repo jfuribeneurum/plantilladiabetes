@@ -40,7 +40,7 @@
                 <div class="form-field age-field">
                     <label for="ageYears">Edad:</label>
                     <input type="number" id="ageYears" name="ageYears" placeholder="Años" required>
-                    <input type="number" id="ageMonths" name="ageMonths" placeholder="Meses" required>
+                    <input type="number" id="ageMonths" name="ageMonths" placeholder="Meses" >
                 </div>
             
                 <div class="form-field">
@@ -68,7 +68,7 @@
 
                 <div class="form-field">
                     <label for="diabetesType">Tipo de diabetes:</label>
-                    <select id="diabetesType" name="diabetesType" required>
+                    <select id="diabetesType" name="diabetesType" required onchange="toggleObservacionField()">
                         <option value="">Seleccione...</option>
                         <option value="none">Ninguno</option>
                         <option value="type1">Tipo 1</option>
@@ -76,11 +76,13 @@
                         <option value="gestational">Gestacional</option>
                         <option value="other">Otro</option>
                     </select>
-                </div>
-
-                <div class="form-field">
-                    <label for="patientDebut">Debut:</label>
-                    <input type="text" id="patientDebut" name="patientDebut" required>
+                    <input type="text" id="observacion" name="observacion" placeholder="¿Cuál?" class="hidden">
+                    <table>
+                        <tr>
+                            <td><label for="patientDebut">Debut:</label></td>
+                            <td><textarea id="descripcion" name="descripcion" rows="4" required></textarea></td>
+                        </tr>
+                    </table>
                 </div>
             </fieldset>
             
@@ -101,9 +103,11 @@
                     <table class="styled-table">
                         <thead>
                             <tr>
+                                <th></th>
                                 <th>Fecha</th>
                                 <th>Medicamento</th>
                                 <th>Cantidad</th>
+                                <th>Presentación</th>
                                 <th>Pauta</th>
                                 <th>Temporalidad</th>
                                 <th>Desde</th>
@@ -115,6 +119,7 @@
                         </thead>
                         <tbody>
                             <tr>
+                                <td><input type="checkbox" id="genericCheckbox" name="genericCheckbox"></td>
                                 <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
                                 <td>
                                     <select id="agentesorales" name="agentesorales" required>
@@ -132,14 +137,18 @@
                                     </select>
                                 </td>
                                 <td class="form-field"><input type="number" name="AD" min="0" max="1000" step="1" required></td>
+                                <td>
+                                    <select id="presentacion" name="presentacion" required>
+                                        <option value="">Seleccione...</option>
+                                        <option value="opcion_1">opc 1</option>
+                                        <option value="opcion_2">opc 2</option>
+                                    </select>
+                                </td>
                                 <td>Cada</td>
                                 <td>
-                                    <select name="tiempo" id="tiempo">
+                                    <select name="cantidadHoras" id="cantidadHoras" required>
                                         <option value="">Seleccione...</option>
-                                        <option value="horas" selected>Horas</option>
-                                        <option value="dias">Días</option>
-                                        <option value="semanas">Semanas</option>
-                                        <option value="meses">Meses</option>
+                                        <option value="">dias</option>
                                     </select>
                                 </td>
                                 <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
@@ -149,9 +158,11 @@
                                         <option value="yes">Sí</option>
                                         <option value="no">No</option>
                                     </select>
-                                </td>
+                                </td> 
+
                                 <td>
                                     <select class="select-option causa-abandono">
+                                        <option value="">Seleccione...</option>
                                         <option value="order">Orden Médica</option>
                                         <option value="administrative">Administrativo</option>
                                         <option value="patient">Decisión paciente</option>
@@ -164,10 +175,108 @@
                             </tr>
                         </tbody>
                     </table>
-                    <button type="button" id="addRowBtn" class="addmedi">Agregar</button>
-                    <button type="submit" class="addmedi">Editar</button>
+                    <div class="botonesmedi">
+                        <button type="submit" id="addRowBtn" class="addmedi">Agregar</button>
+                        <button type="submit" class="addmedi">Editar</button>
+                    </div>
                     <p><u>Si = el paciente es adherente + del 80%</u></p>
                 </div>
+
+                <h2>Bombas de insulina</h2>
+                    
+                <div class="form-field">
+                    <label for="Bombainsulina">¿El paciente actualmente tiene bomba de insulina?</label>
+                    <select id="Bombainsulina" class="select-option" name="Bombainsulina" onchange="toggleInsulinPumpFields()">
+                        <option value="">Seleccione...</option>
+                        <option value="yes">Sí</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+        
+                <div id="insulinPumpFields" style="display: none;">
+                    <div class="form-field">
+                        <label for="instalacionDate">Fecha de instalación de la bomba:</label>
+                        <input type="date" id="instalacionDate" name="instalacionDate" required>
+                    </div>
+                    
+                    <div class="form-field">
+                        <label for="cambioDate">Fecha de cambio:</label>
+                        <input type="date" id="cambioDate" name="cambioDate" required>
+                    </div>
+                    
+                    <div class="form-field">
+                        <label for="indicacion">Indicación:</label>
+                        <select id="Bombainsulina" class="select-option" name="Bombainsulina" onchange="toggleInsulinPumpFields()">
+                            <option value="">Seleccione...</option>
+                            <option value="yes">Mal control glucémico</option>
+                            <option value="no">Fenómeno del alba</option>
+                            <option value="no">Hipoglucemias frecuentes</option>
+                            <option value="no">Gastroparesia diabética</option>
+                            <option value="no">Otros</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-field">
+                        <label for="estadoEmbarazo">Estado de embarazo en el momento de instalación de la bomba:</label>
+                        <select id="Bombainsulina" class="select-option" name="Bombainsulina" onchange="toggleInsulinPumpFields()">
+                            <option value="">Seleccione...</option>
+                            <option value="yes">Sí</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-field">
+                        <label for="marca">Marca:</label>
+                        <select id="Bombainsulina" class="select-option" name="Bombainsulina" onchange="toggleInsulinPumpFields()">
+                            <option value="">Seleccione...</option>
+                            <option value="yes">MedTronic</option>
+                            <option value="no">OmniPod</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-field">
+                        <label for="analogoin">Análogo de insulina utilizada:</label>
+                        <select id="Bombainsulina" class="select-option" name="Bombainsulina" onchange="toggleInsulinPumpFields()">
+                            <option value="">Seleccione...</option>
+                            <option value="yes">Regular</option>
+                            <option value="no">Aspart</option>
+                            <option value="no">Lispro</option>
+                            <option value="no">Glulisina</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-field">
+                        <label for="tiempoActivo">Tiempo de insulina activa (horas):</label>
+                        <input type="number" name="AD" min="0" max="1000" step="1" required>
+                    </div>
+                    
+                    <div class="form-field">
+                        <label for="obstruccionCateter">¿Obstrucción del catéter?:</label>
+                        <select id="obstruccionCateter" class="select-option" name="obstruccionCateter" onchange="toggleCateterObstructionFields()">
+                            <option value="">Seleccione...</option>
+                            <option value="yes">Sí</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div> 
+                    
+                    <div id="cateterObstructionFields" style="display: none;">
+                        <div class="form-field">
+                            <label for="numObstrucciones">Número de obstrucciones:</label>
+                            <input type="number" id="numObstrucciones" name="numObstrucciones" placeholder="Pendiente definir tipo de dato" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-field">
+                        <label for="alergiaSensor">¿Alergia al sensor?:</label>
+                        <select id="obstruccionCateter" class="select-option" name="obstruccionCateter" onchange="toggleCateterObstructionFields()">
+                            <option value="">Seleccione...</option>
+                            <option value="yes">Sí</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                </div>
+
+
 
                 <div class="form-field insulina-label">
                     <label for="insulina" class="insulina">¿El paciente actualmente está recibiendo insulina?</label> 
@@ -276,100 +385,6 @@
                     <p>En caso de conteo de carbohidratos en el apartado de los momentos del día colocar R: Índice insulina/CHOs y S: Factor de corrección</p>
                 </div>
 
-                
-                <h2>Bombas de insulina</h2>
-                    
-                <div class="form-field">
-                    <label for="Bombainsulina">¿El paciente actualmente tiene bomba de insulina?</label>
-                    <select id="Bombainsulina" class="select-option" name="Bombainsulina" onchange="toggleInsulinPumpFields()">
-                        <option value="">Seleccione...</option>
-                        <option value="yes">Sí</option>
-                        <option value="no">No</option>
-                    </select>
-                </div>
-        
-                <div id="insulinPumpFields" style="display: none;">
-                    <div class="form-field">
-                        <label for="instalacionDate">Fecha de instalación de la bomba:</label>
-                        <input type="date" id="instalacionDate" name="instalacionDate" required>
-                    </div>
-                    
-                    <div class="form-field">
-                        <label for="cambioDate">Fecha de cambio:</label>
-                        <input type="date" id="cambioDate" name="cambioDate" required>
-                    </div>
-                    
-                    <div class="form-field">
-                        <label for="indicacion">Indicación:</label>
-                        <select id="Bombainsulina" class="select-option" name="Bombainsulina" onchange="toggleInsulinPumpFields()">
-                            <option value="">Seleccione...</option>
-                            <option value="yes">Mal control glucémico</option>
-                            <option value="no">Fenómeno del alba</option>
-                            <option value="no">Hipoglucemias frecuentes</option>
-                            <option value="no">Gastroparesia diabética</option>
-                            <option value="no">Otros</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-field">
-                        <label for="estadoEmbarazo">Estado de embarazo en el momento de instalación de la bomba:</label>
-                        <select id="Bombainsulina" class="select-option" name="Bombainsulina" onchange="toggleInsulinPumpFields()">
-                            <option value="">Seleccione...</option>
-                            <option value="yes">Sí</option>
-                            <option value="no">No</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-field">
-                        <label for="marca">Marca:</label>
-                        <select id="Bombainsulina" class="select-option" name="Bombainsulina" onchange="toggleInsulinPumpFields()">
-                            <option value="">Seleccione...</option>
-                            <option value="yes">MedTronic</option>
-                            <option value="no">OmniPod</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-field">
-                        <label for="analogoin">Análogo de insulina utilizada:</label>
-                        <select id="Bombainsulina" class="select-option" name="Bombainsulina" onchange="toggleInsulinPumpFields()">
-                            <option value="">Seleccione...</option>
-                            <option value="yes">Regular</option>
-                            <option value="no">Aspart</option>
-                            <option value="no">Lispro</option>
-                            <option value="no">Glulisina</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-field">
-                        <label for="tiempoActivo">Tiempo de insulina activa (horas):</label>
-                        <input type="number" name="AD" min="0" max="1000" step="1" required>
-                    </div>
-                    
-                    <div class="form-field">
-                        <label for="obstruccionCateter">¿Obstrucción del catéter?:</label>
-                        <select id="obstruccionCateter" class="select-option" name="obstruccionCateter" onchange="toggleCateterObstructionFields()">
-                            <option value="">Seleccione...</option>
-                            <option value="yes">Sí</option>
-                            <option value="no">No</option>
-                        </select>
-                    </div>
-                    
-                    <div id="cateterObstructionFields" style="display: none;">
-                        <div class="form-field">
-                            <label for="numObstrucciones">Número de obstrucciones:</label>
-                            <input type="number" id="numObstrucciones" name="numObstrucciones" placeholder="Pendiente definir tipo de dato" required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-field">
-                        <label for="alergiaSensor">¿Alergia al sensor?:</label>
-                        <select id="obstruccionCateter" class="select-option" name="obstruccionCateter" onchange="toggleCateterObstructionFields()">
-                            <option value="">Seleccione...</option>
-                            <option value="yes">Sí</option>
-                            <option value="no">No</option>
-                        </select>
-                    </div>
-                </div>
 
                 <h2>Actividad física</h2>
                 <div id="tablaAtividadfisica" style="">
@@ -1410,6 +1425,17 @@
     
     <script>
 
+        function toggleObservacionField() {
+            var diabetesType = document.getElementById('diabetesType');
+            var observacion = document.getElementById('observacion');
+            
+            if (diabetesType.value === 'other') {
+                observacion.classList.remove('hidden');
+            } else {
+                observacion.classList.add('hidden');
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
                 const causaAbandonoSelects = document.querySelectorAll('.causa-abandono');
                 const observacionColumns = document.querySelectorAll('.observacion-column');
@@ -1575,6 +1601,14 @@
             toggleCateterObstructionFields();
         });
 
+        // Generar opciones para el select de horas
+        const cantidadHorasSelect = document.getElementById('cantidadHoras');
+        for (let i = 1; i <= 24; i++) {
+        const option = document.createElement('option');
+        option.value = i;
+        option.textContent = `${i} hora${i > 1 ? 's' : ''}`;
+        cantidadHorasSelect.appendChild(option);
+    }
         
     </script>
     
