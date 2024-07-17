@@ -74,6 +74,8 @@
                         <option value="type1">Tipo 1</option>
                         <option value="type2">Tipo 2</option>
                         <option value="gestational">Gestacional</option>
+                        <option value="gestational">Pregestacional 1</option>
+                        <option value="gestational">Pregestacional 2</option>
                         <option value="other">Otro</option>
                     </select>
                     <input type="text" id="observacion" name="observacion" placeholder="¿Cuál?" class="hidden">
@@ -245,10 +247,10 @@
                         </select>
                     </div>
                     
-                    <div class="form-field">
+                    <!--<div class="form-field">
                         <label for="tiempoActivo">Tiempo de insulina activa (horas):</label>
                         <input type="number" name="AD" min="0" max="1000" step="1" required>
-                    </div>
+                    </div>-->
                     
                     <div class="form-field">
                         <label for="obstruccionCateter">¿Obstrucción del catéter?:</label>
@@ -277,9 +279,9 @@
                 </div>
 
 
-
+                <h2>Basal</h2>
                 <div class="form-field insulina-label">
-                    <label for="insulina" class="insulina">¿El paciente actualmente está recibiendo insulina?</label> 
+                    <label for="insulina" class="insulina">¿El paciente actualmente está recibiendo insulina Basal?</label> 
                     <select id="insulina" name="insulina" required>
                         <option value="">Seleccione...</option>
                         <option value="siinsulina">SI</option>
@@ -288,7 +290,6 @@
                 </div>
 
                 <div id="tablainsulina" style="display: none;">
-                    <h2>Basal</h2>
                     <table class="styled-table">
                         <thead>
                             <tr>
@@ -320,8 +321,9 @@
 
                 <br>
                 <br>
+                <h2>Prandial</h2>
                 <div class="form-field insulina-label">
-                <label for="insulinaPrandial" class="insulinaPrandial">¿El paciente se ajusta su insulina?</label>
+                <label for="insulinaPrandial" class="insulinaPrandial">¿El paciente actualmente está recibiendo insulina Prandial</label>
                 <select id="insulinaPrandial" class="form-field">
                     <option value="">Seleccione...</option>
                     <option value="yes">Sí</option>
