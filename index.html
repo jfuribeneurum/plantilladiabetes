@@ -385,44 +385,70 @@
                         </tbody>
                     </table>
                     <p>En caso de conteo de carbohidratos en el apartado de los momentos del día colocar R: Índice insulina/CHOs y S: Factor de corrección</p>
+                </div>  
+            </fieldset>
+
+            <fieldset>
+                <legend>Habitos de vida</legend>
+
+                <div class="form-field">
+                    <label for="actividadFisica">¿El paciente realiza actividad física?</label>
+                    <select id="actividadFisica" class="select-option" name="actividadFisica" onchange="toggleActividadFisicaFields()">
+                        <option value="">Seleccione...</option>
+                        <option value="yes">Sí</option>
+                        <option value="no">No</option>
+                    </select>
                 </div>
-
-
-                <h2>Actividad física</h2>
-                <div id="tablaAtividadfisica" style="">
+                
+                <div id="tablaActividadFisica" style="display: none;">
                     <table class="styled-table">
                         <thead>
                             <tr>
                                 <th>Fecha</th>
                                 <th>Duración</th>
-                                <th>frecuencia</th>
+                                <th>Frecuencia</th>
+                                <th>Intensidad</th>
                                 <th>Tipo</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
-                                <td><select id="horasActividadFisica" class="select-option" name="horasActividadFisica">
-                                    <option value="">Seleccione...</option>
-                                    <!-- Generar opciones de 0 a 24 horas -->
-                                    </select></td>
-                                <td><select id="frecuenciaActividad" name="frecuenciaActividad" class="select-option">
-                                    <option value="">Seleccione...</option>
-                                    <option value="diario">Diario</option>
-                                    <option value="semanal">Semanal</option>
-                                    <option value="mensual">Mensual</option>
-                                    <option value="anual">Anual</option>
-                                    </select></td>
+                                <td>
+                                    <select id="horasActividadFisica" class="select-option" name="horasActividadFisica">
+                                        <option value="">Seleccione...</option>
+                                        <!-- Generar opciones de 0 a 24 horas -->
+                                    </select>
+                                </td>
+                                <td>
+                                    <select id="frecuenciaActividad" name="frecuenciaActividad" class="select-option">
+                                        <option value="">Seleccione...</option>
+                                        <option value="diario">Diario</option>
+                                        <option value="semanal">Semanal</option>
+                                        <option value="mensual">Mensual</option>
+                                        <option value="anual">Anual</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select id="frecuenciaActividad" name="frecuenciaActividad" class="select-option">
+                                        <option value="">Seleccione...</option>
+                                        <option value="diario">Leve</option>
+                                        <option value="semanal">Moderada</option>
+                                        <option value="mensual">Intensa</option>
+                                    </select>
+                                </td>
                                 <td class="form-field">
-                                    <input type="text" id="patientName" name="patientName" required>
+                                    <input type="text" id="tipoActividad" name="tipoActividad" required>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+                
+                
 
                 <h2>Nutrición</h2>
-                <div id="tablaAtividadfisica" style="">
+                <div id="tablaAtividadfisica">
                     <table class="styled-table">
                         <thead>
                             <tr>
@@ -430,47 +456,81 @@
                                 <th>No. Comidas al día</th>
                                 <th>Apetito</th>
                                 <th>Ansiedad</th>
-                                <th>Cual</th>
+                                <th id="thCual" style="display: none;">Cual</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
-                                <td> <select id="numComidas" class="select-option" name="numComidas">
-                                    <option value="">Seleccione...</option>
-                                    <!-- Generar opciones de 1 a 6 comidas -->
-                                    <script>
-                                        for (let i = 1; i <= 20; i++) {
-                                            document.write(`<option value="${i}">${i}</option>`);
-                                        }
-                                    </script>
-                                </select></td>
-                                <td><select id="opciones">
-                                    <option value="">Seleccione una opción...</option>
-                                    <option value="platoCompleto">Plato completo</option>
-                                    <option value="medioPlato">Medio Plato</option>
-                                    <option value="cuartoPlato">1/4 del plato</option>
-                                    </select></td>
                                 <td class="form-field">
-                                    <input type="text" id="patientName" name="patientName" required>
+                                    <input type="date" id="consultationDate" name="consultationDate" required>
+                                </td>
+                                <td>
+                                    <select id="numComidas" class="select-option" name="numComidas">
+                                        <option value="">Seleccione...</option>
+                                        <script>
+                                            for (let i = 1; i <= 20; i++) {
+                                                document.write(`<option value="${i}">${i}</option>`);
+                                            }
+                                        </script>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select id="opciones">
+                                        <option value="">Seleccione una opción...</option>
+                                        <option value="platoCompleto">Plato completo</option>
+                                        <option value="medioPlato">Medio Plato</option>
+                                        <option value="cuartoPlato">1/4 del plato</option>
+                                    </select>
                                 </td>
                                 <td class="form-field">
-                                    <input type="text" id="patientName" name="patientName" required>
+                                    <select id="ansiedad" name="ansiedad" class="select-option" onchange="toggleAnsiedadObservacion()">
+                                        <option value="">Seleccione...</option>
+                                        <option value="si">Sí</option>
+                                        <option value="no">No</option>
+                                    </select>
+                                </td>
+                                <td class="form-field" id="ansiedadObservacionField" style="display: none;">
+                                    <input type="text" id="obseransi" name="obseransi" placeholder="Observación" required>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+
+                <script>
+                    function toggleAnsiedadObservacion() {
+                        const ansiedadSelect = document.getElementById('ansiedad');
+                        const ansiedadObservacionField = document.getElementById('ansiedadObservacionField');
+                        const thCual = document.getElementById('thCual');
+                        
+                        if (ansiedadSelect.value === 'si') {
+                            ansiedadObservacionField.style.display = 'table-cell';
+                            thCual.style.display = 'table-cell';
+                        } else {
+                            ansiedadObservacionField.style.display = 'none';
+                            thCual.style.display = 'none';
+                        }
+                    }
+                </script>
+
             </fieldset>
+
 
             <fieldset>
                 <legend>Enfermedad activa</legend>
                 <h2>Enfermedad actual</h2>
                 <br>
-                <p>Motivo de consulta: <br>(ingreso- control de diabetes) 
-                    Revisión por sistemas.
-                    </p>
-                    <p>pendiente definir campos</p>
+                <div>
+                    <div class="form-field insulina-label">
+                        <label for="Motivo de consulta" class="Motivo de consulta">Motivo de consulta</label>
+                        <select id="Motivo de consulta" class="form-field">
+                            <option value="">Seleccione...</option>
+                            <option value="yes">Ingreso</option>
+                            <option value="no">Control</option>
+                            <option value="no">Consulta no programada</option>
+                        </select>
+                    </div>
+                </div>
                 <h2>Signos vitales</h2>
                 <table class="styled-table">
                     <thead>
@@ -1418,7 +1478,6 @@
                     <label for="patientName">Especialidad:</label>
                     <input type="text" id="patientName" name="patientName" required>
                 </div>
-                
             </fieldset>
                 
             <button type="submit">Enviar</button>
@@ -1426,6 +1485,28 @@
     </main> 
     
     <script>
+
+        function toggleActividadFisicaFields() {
+                const actividadFisicaSelect = document.getElementById('actividadFisica');
+                const tablaActividadFisica = document.getElementById('tablaActividadFisica');
+                
+                if (actividadFisicaSelect.value === 'yes') {
+                    tablaActividadFisica.style.display = 'block';
+                } else {
+                    tablaActividadFisica.style.display = 'none';
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+                // Generar opciones para el select de horas
+                const horasActividadFisicaSelect = document.getElementById('horasActividadFisica');
+                for (let i = 0; i <= 24; i++) {
+                    const option = document.createElement('option');
+                    option.value = i;
+                    option.textContent = `${i} hora${i > 1 ? 's' : ''}`;
+                    horasActividadFisicaSelect.appendChild(option);
+                }
+            });
 
         function toggleObservacionField() {
             var diabetesType = document.getElementById('diabetesType');
