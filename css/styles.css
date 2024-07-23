@@ -88,14 +88,14 @@ legend {
 
 .form-field input,
 .form-field select {
-    padding: 8px;
+    padding: 6px; /* Ajustar padding */
     border: 1px solid #ddd;
     border-radius: 4px;
     box-sizing: border-box;
     width: 100%;
     max-width: 300px; /* Ancho máximo para evitar que se vean muy extendidos */
-    font-size: 14px; /* Reducir tamaño de fuente */
-    margin: 2px 0; /* Reducir margen */
+    font-size: 13px; /* Tamaño de fuente intermedio */
+    margin: 3px 0; /* Ajustar margen */
 }
 
 .form-field input[type="number"],
@@ -119,8 +119,8 @@ legend {
     background-color: #ffffff;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Reducir sombra */
-    font-size: 14px; /* Reducir tamaño de fuente */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Reducir sombra */
+    font-size: 13px; /* Tamaño de fuente intermedio */
 }
 
 .styled-table thead {
@@ -130,7 +130,7 @@ legend {
 
 .styled-table th,
 .styled-table td {
-    padding: 8px 10px; /* Reducir padding */
+    padding: 6px 8px; /* Ajustar padding */
     text-align: center;
     border-bottom: 1px solid #ddd;
 }
@@ -144,23 +144,39 @@ legend {
 }
 
 .styled-table select {
-    padding: 6px; /* Reducir padding */
+    padding: 6px; /* Ajustar padding */
     border: 1px solid #ddd;
     border-radius: 4px;
     background-color: #f0f0f0;
     width: 100%;
     box-sizing: border-box;
-    font-size: 14px; /* Reducir tamaño de fuente */
+    font-size: 13px; /* Tamaño de fuente intermedio */
+}
+
+.styled-table input[type="text"],
+.styled-table input[type="date"],
+.styled-table input[type="number"] {
+    width: 100%;
+    padding: 6px; /* Ajustar padding */
+    box-sizing: border-box;
+    font-size: 13px; /* Tamaño de fuente intermedio */
+}
+
+.styled-table .observacion-column input {
+    width: 100%;
+    padding: 6px; /* Ajustar padding */
+    box-sizing: border-box;
+    font-size: 13px; /* Tamaño de fuente intermedio */
 }
 
 button[type="submit"], .addmedi {
     background-color: #7d2d86; /* Color corporativo */
     color: white; /* Color del texto */
-    padding: 10px 16px; /* Reducir padding */
+    padding: 10px 16px; /* Ajustar padding */
     border: none; /* Sin borde */
     border-radius: 12px; /* Reducir borde redondeado */
     cursor: pointer; /* Cursor al pasar el mouse */
-    font-size: 14px; /* Reducir tamaño de fuente */
+    font-size: 15px; /* Tamaño de fuente */
 }
 
 button[type="submit"]:hover, .addmedi:hover {
@@ -187,7 +203,7 @@ textarea {
     background-color: #7d2d86; /* Color corporativo */
     margin-top: 15px;
     color: white; /* Color del texto */
-    padding: 10px 20px; /* Espaciado interno */
+    padding: 12px 24px; /* Ajustar padding */
     border-radius: 4px; /* Borde redondeado */
     text-decoration: none; /* Sin subrayado */
     font-size: 16px; /* Tamaño de fuente */
@@ -226,7 +242,6 @@ textarea {
 .hidden {
     display: none;
 }
-
 
 
 

@@ -35,13 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Mostrar estrategia nutricional si cambia la selección de ajuste de insulina
-    document.getElementById('insulinaPrandial').addEventListener('change', function() {
-        var div = document.getElementById('estrategiaNutricional');
-        div.style.display = this.value === 'yes' ? 'block' : 'none';
-
-        var div2 = document.getElementById('insulinaPrandialTabla');
-        div2.style.display = this.value === 'yes' ? 'block' : 'none';
-    });
+    
 
     // Inicializar estado de visibilidad de campos según la carga inicial
     toggleInsulinPumpFields();

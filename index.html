@@ -54,10 +54,6 @@
                 </div>
             </fieldset>
             
-            
-            
-
-            
             <fieldset>
                 <legend>Datos patológicos</legend>
 
@@ -108,9 +104,12 @@
                                 <th></th>
                                 <th>Fecha</th>
                                 <th>Medicamento</th>
-                                <th>Cantidad</th>
-                                <th>Presentación</th>
-                                <th>Pauta</th>
+                                <th>Dosis</th>
+                                <th>Via</th>
+                                <th>Cada</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
                                 <th>Temporalidad</th>
                                 <th>Desde</th>
                                 <th>Hasta</th>
@@ -139,18 +138,26 @@
                                     </select>
                                 </td>
                                 <td class="form-field"><input type="number" name="AD" min="0" max="1000" step="1" required></td>
-                                <td>
-                                    <select id="presentacion" name="presentacion" required>
-                                        <option value="">Seleccione...</option>
-                                        <option value="opcion_1">opc 1</option>
-                                        <option value="opcion_2">opc 2</option>
+                                <td><select >
+                                    <option value="">Seleccione...</option>
+                                    <option value="order">Oral</option>
+                                    <option value="administrative">Subcutanea</option>
+                                    <option value="administrative">Intravenosa</option>
                                     </select>
                                 </td>
                                 <td>Cada</td>
                                 <td>
                                     <select name="cantidadHoras" id="cantidadHoras" required>
                                         <option value="">Seleccione...</option>
-                                        <option value="">dias</option>
+                                    </select>
+                                </td>
+                                <td>Durante</td>
+                                <td class="form-field"><input type="number" name="AD" min="0" max="1000" step="1" required></td>
+                                <td><select>
+                                    <option value="">Seleccione...</option>
+                                    <option value="order">Dias</option>
+                                    <option value="administrative">Semanas</option>
+                                    <option value="patient">Meses</option>
                                     </select>
                                 </td>
                                 <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
@@ -184,6 +191,19 @@
                     <p><u>Si = el paciente es adherente + del 80%</u></p>
                 </div>
 
+                <div>
+                    <h2>Insulina</h2>
+                    <div class="form-field">
+                        <label for="insulina1">¿El paciente actualmente recibe insulina?</label>
+                        <select id="insulina1" class="select-option" name="insulina1" onchange="toggleInsulinDetails()">
+                            <option value="">Seleccione...</option>
+                            <option value="yes">Sí</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="insulin-details" class="hidden insulin-details">
                 <h2>Bombas de insulina</h2>
                     
                 <div class="form-field">
@@ -194,7 +214,8 @@
                         <option value="no">No</option>
                     </select>
                 </div>
-        
+                
+                
                 <div id="insulinPumpFields" style="display: none;">
                     <div class="form-field">
                         <label for="instalacionDate">Fecha de instalación de la bomba:</label>
@@ -250,7 +271,7 @@
                     <!--<div class="form-field">
                         <label for="tiempoActivo">Tiempo de insulina activa (horas):</label>
                         <input type="number" name="AD" min="0" max="1000" step="1" required>
-                    </div>-->
+                    </div>
                     
                     <div class="form-field">
                         <label for="obstruccionCateter">¿Obstrucción del catéter?:</label>
@@ -275,7 +296,7 @@
                             <option value="yes">Sí</option>
                             <option value="no">No</option>
                         </select>
-                    </div>
+                    </div>-->
                 </div>
 
 
@@ -295,7 +316,8 @@
                             <tr>
                                 <th>Fecha</th>
                                 <th>Tipo</th>
-                                <th>AD</th>
+                                <th>Presentacion</th>
+                                <th>Unidades dia</th>
                                 <th>DD</th>
                                 <th>AA</th>
                                 <th>DA</th>
@@ -306,8 +328,25 @@
                         <tbody>
                             <tr>
                                 <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
-                                <td class="form-field">Insulina Regular</td>
-                                <td class="form-field"><input type="number" name="AD" min="0" max="1000" step="1" required></td>
+                                <td class="form-field"><select id="insulinaBasal" class="form-field">
+                                    <option value="">Seleccione...</option>
+                                    <option value="detemir">detemir</option>
+                                    <option value="glargina">glargina</option>
+                                    <option value="Glargina_biosimilar">Glargina biosimilar</option>
+                                    <option value="Glargina_biosimilar">glargina U-300</option>
+                                    <option value="Glargina_biosimilar">degludec</option>
+                                </select>
+                                </td>
+                                <td class="form-field"><select id="insulinaBasal" class="form-field">
+                                    <option value="">Seleccione...</option>
+                                    <option value="detemir">detemir</option>
+                                    <option value="glargina">glargina</option>
+                                    <option value="Glargina_biosimilar">Glargina biosimilar</option>
+                                    <option value="Glargina_biosimilar">glargina U-300</option>
+                                    <option value="Glargina_biosimilar">degludec</option>
+                                </select>
+                                </td>
+                                <td class="form-field"><input type="number" name="DD" min="0" max="1000" step="1" required></td>
                                 <td class="form-field"><input type="number" name="DD" min="0" max="1000" step="1" required></td>
                                 <td class="form-field"><input type="number" name="AA" min="0" max="1000" step="1" required></td>
                                 <td class="form-field"><input type="number" name="DA" min="0" max="1000" step="1" required></td>
@@ -344,7 +383,11 @@
                     <br>
                     <br>
                     <label for="typeinsulina">Tipo de insulina:</label>
-                    <input type="text" id="typeinsulina" name="typeinsulina" required>
+                    <select id="insulinaPrandial" class="form-field">
+                        <option value="">Seleccione...</option>
+                        <option value="yes">Análogos ultrarrápidos</option>
+                        <option value="no">Insulina rápida</option>
+                    </select>
                 </div>
                 
                 <div class="form-field insulinaPrandial-label" id="insulinaPrandialTabla" style="display: none;">
@@ -366,8 +409,16 @@
                         <tbody>
                             <tr>
                                 <td><input type="date" id="consultationDate" name="consultationDate" required></td>
-                                <td>Por definir</td>
-                                <td>Por definir</td>
+                                <td><select id="insulinaPrandial" class="form-field">
+                                    <option value="">Seleccione...</option>
+                                    <option value="yes">Adecuada</option>
+                                    <option value="no">Inadecuada</option>
+                                </select></td>
+                                <td><select id="insulinaPrandial" class="form-field">
+                                    <option value="">Seleccione...</option>
+                                    <option value="yes">Si</option>
+                                    <option value="no">No</option>
+                                </select></td>
                                 <td>
                                     <select class="select-option">
                                         <option value="">Seleccione...</option>
@@ -384,9 +435,59 @@
                             </tr>
                         </tbody>
                     </table>
+                </div> 
+
+                <div class="form-field insulinaPrandial-label" id="insulinaPrandialTabla2" style="display: none;">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Temporalidad</th>
+                                <th>Entre comidas</th>
+                                <th>Correcciones</th>
+                                <th>AD</th>
+                                <th>DD</th>
+                                <th>AA</th>
+                                <th>DA</th>
+                                <th>AC</th>
+                                <th>DC</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="date" id="consultationDate" name="consultationDate" required></td>
+                                <td><select id="insulinaPrandial" class="form-field">
+                                    <option value="">Seleccione...</option>
+                                    <option value="yes">Adecuada</option>
+                                    <option value="no">Inadecuada</option>
+                                </select></td>
+                                <td><select id="insulinaPrandial" class="form-field">
+                                    <option value="">Seleccione...</option>
+                                    <option value="yes">Si</option>
+                                    <option value="no">No</option>
+                                </select></td>
+                                <td>
+                                    <select class="select-option">
+                                        <option value="">Seleccione...</option>
+                                        <option value="Pre">Preprandial</option>
+                                        <option value="Post">Postprandial</option>
+                                    </select>
+                                </td>
+                                <td><input type="number" name="AD" min="0" max="1000" step="1" required><input type="text" name="AD"  required></td>
+                                <td><input type="number" name="AD" min="0" max="1000" step="1" required><input type="text" name="AD"  required></td>
+                                <td><input type="number" name="AD" min="0" max="1000" step="1" required><input type="text" name="AD"  required></td>
+                                <td><input type="number" name="AD" min="0" max="1000" step="1" required><input type="text" name="AD"  required></td>
+                                <td><input type="number" name="AD" min="0" max="1000" step="1" required><input type="text" name="AD"  required></td>
+                                <td><input type="number" name="AD" min="0" max="1000" step="1" required><input type="text" name="AD"  required></td>
+                            </tr>
+                        </tbody>
+                    </table>
                     <p>En caso de conteo de carbohidratos en el apartado de los momentos del día colocar R: Índice insulina/CHOs y S: Factor de corrección</p>
-                </div>  
+                </div>   
+                
+            </div>
             </fieldset>
+
 
             <fieldset>
                 <legend>Habitos de vida</legend>
@@ -530,6 +631,12 @@
                             <option value="no">Consulta no programada</option>
                         </select>
                     </div>
+                    <table>
+                        <tr>
+                            <td><label for="descripcion">Revision de Sistemas:</label></td>
+                            <td><textarea id="descripcion" name="descripcion" rows="2" required></textarea></td>
+                        </tr>
+                    </table>
                 </div>
                 <h2>Signos vitales</h2>
                 <table class="styled-table">
@@ -540,12 +647,23 @@
                             <th>Frecuencia Cardiaca (LPM)</th>
                             <th>Frecuencia Respiratoria (RPM)</th>
                             <th>Temperatura (ºC)</th>
+                            <th>Perimetro abdominal</th>
                             <th>Saturación de Oxigeno (%)</th>
+                            <th>Peso</th>
+                            <th>talla</th>
+                            <th>IMC</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
+                            <td class="form-field">
+                                <input type="number" name="sistolica" min="0" max="1000" step="1" placeholder="Sistólica" required>
+                                <input type="number" name="diastolica" min="0" max="1000" step="1" placeholder="Diastólica" required>
+                            </td>
+                            <td class="form-field"><input type="number" name="AD" min="0" max="1000" step="1" required></td>
+                            <td class="form-field"><input type="number" name="AD" min="0" max="1000" step="1" required></td>
+                            <td class="form-field"><input type="number" name="AD" min="0" max="1000" step="1" required></td>
                             <td class="form-field"><input type="number" name="AD" min="0" max="1000" step="1" required></td>
                             <td class="form-field"><input type="number" name="AD" min="0" max="1000" step="1" required></td>
                             <td class="form-field"><input type="number" name="AD" min="0" max="1000" step="1" required></td>
@@ -567,17 +685,18 @@
                     </tr>
 
                     <tr>
-                        <td><label for="descripcion">Ojos:</label></td>
+                        <td><label for="descripcion">General:</label></td>
                         <td><textarea id="descripcion" name="descripcion" rows="4" required></textarea></td>
                     </tr>
                     <tr>
-                        <td><label for="cabezaOrl">Cabeza y ORL:</label></td>
+                        <td><label for="cabezaOrl">Piel-Anexos:</label></td>
                         <td><textarea id="cabezaOrl" name="cabezaOrl" rows="4"></textarea></td>
                     </tr>
                     <tr>
-                        <td><label for="cuello">Cuello:</label></td>
+                        <td><label for="cuello">Pies:</label></td>
                         <td><textarea id="cuello" name="cuello" rows="4"></textarea></td>
                     </tr>
+                    <!--
                     <tr>
                         <td><label for="torax">Tórax:</label></td>
                         <td><textarea id="torax" name="torax" rows="4"></textarea></td>
@@ -605,383 +724,526 @@
                     <tr>
                        
                     </tr>
+                -->
                 </table>
             </fieldset>
 
             <fieldset>
                 <legend>Complicaciones y Factores de Riesgo</legend>
                 <h2 class="sombreado">Complicaciones microvasculares</h2>
-                <h2>Retinopatía diabética</h2>
-                <div id="tablaAtividadfisica" style="">
-                    <table class="styled-table">
-                        <thead>
-                            <tr>
-                                <th>Fecha</th>
-                                <th>Fecha ultima Evaluación oftalmología</th>
-                                <th>Dx de Retinopatía </th>
-                                <th>Edema macular</th>
-                                
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
-                                <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
-                                <td><select id="opciones">
-                                    <option value="">Seleccione una opción...</option>
-                                    <option value="platoCompleto">Proliferativa</option>
-                                    <option value="medioPlato">No proliferativa</option>
-                                    <option value="cuartoPlato">Sin retinopatia</option>
-                                    </select></td>
-                                <td class="form-field">
-                                    <select id="opciones">
-                                        <option value="">Seleccione una opción...</option>
-                                        <option value="platoCompleto">Si</option>
-                                        <option value="medioPlato">No</option>
-                                    </select>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <h2>Nefropatía diabética</h2>
-                    <table class="styled-table">
-                        <thead>
-                            <tr>
-                                <th>Fecha</th>
-                                <th>TRR</th>
-                                <th>Trasplante </th>
-                                <th>Creatinina</th>
-                                <th>TFG</th>
-                                <th>Albuminuria</th>
-                                <th>Clasificación</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
-                                <td class="form-field">
-                                    <select id="opciones">
-                                        <option value="">Seleccione una opción...</option>
-                                        <option value="platoCompleto">Hemodiálisis</option>
-                                        <option value="medioPlato">Peritoneal</option>
-                                        <option value="cuartoPlato">No</option>
-                                        </select>
-                                </td>
-                                <td class="form-field">
-                                    <select id="opciones">
-                                        <option value="">Seleccione una opción...</option>
-                                        <option value="platoCompleto">Si</option>
-                                        <option value="cuartoPlato">No</option>
-                                        </select>
-                                </td>
-                                <td class="form-field">
-                                    <input type="text" id="patientName" name="patientName" required>
-                                </td>
-                                <td class="form-field">
-                                    <input type="text" id="patientName" name="patientName" required>
-                                </td>
-                                <td class="form-field">
-                                    <input type="text" id="patientName" name="patientName" required>
-                                </td>
-                                <td class="form-field">
-                                    <input type="text" id="patientName" name="patientName" required>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <h2>Neuropatía diabética</h2>
+
                 <div class="form-field">
-                    <label for="patientName">Tiene diagnóstico de neuropatía sensitiva:</label>
-                        <select id="opciones">
-                        <option value="">Seleccione una opción...</option>
-                        <option value="platoCompleto">Si</option>
-                        <option value="cuartoPlato">No</option>
-                        </select>
+                    <label for="cmicrovasculares">¿El paciente cuenta con complicaciones microvasculares?</label>
+                    <select id="cmicrovasculares" class="select-option" name="cmicrovasculares" onchange="toggleActividadFisicaFields()">
+                        <option value="">Seleccione...</option>
+                        <option value="yes">Sí</option>
+                        <option value="no">No</option>
+                    </select>
                 </div>
-                <div class="form-field">
-                    <label for="patientName">Otras Neuropatías: </label>
-                        <select id="opciones">
+
+
+                <!-- Pregunta para Retinopatía diabética -->
+
+                
+                    <div class="form-field">
+                        <label for="diabeticRetinopathy">¿Tiene retinopatía diabética?</label>
+                        <select id="diabeticRetinopathy" onchange="toggleSection('diabeticRetinopathy', 'retinopathySection')">
                             <option value="">Seleccione una opción...</option>
-                            <option value="platoCompleto">Si</option>
-                            <option value="cuartoPlato">No</option>
+                            <option value="si">Sí</option>
+                            <option value="no">No</option>
                         </select>
-                </div>
-                <div class="form-field">
-                    <label for="patientName">Tipo de neuropatía: </label>
-                        <select id="opciones">
-                        <option value="">Seleccione una opción...</option>
-                        <option value="platoCompleto">Disfunción eréctil </option>
-                        <option value="cuartoPlato">Gastroparesia</option>
-                        <option value="cuartoPlato">Disautonomía </option>
-                        <option value="cuartoPlato">Hipotensión ortostática</option>
+                    </div>
+                
+
+
+    
+
+    <!-- Sección Retinopatía diabética -->
+    <div id="retinopathySection" style="display: none;">
+        <h2>Retinopatía diabética</h2>
+        <div id="tablaAtividadfisica">
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Fecha última Evaluación oftalmología</th>
+                        <th>Dx de Retinopatía</th>
+                        <th>Edema macular</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
+                        <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
+                        <td>
+                            <select id="retinopathyDiagnosis">
+                                <option value="">Seleccione una opción...</option>
+                                <option value="proliferativa">Proliferativa</option>
+                                <option value="noProliferativa">No proliferativa</option>
+                                <option value="sinRetinopatia">Sin retinopatía</option>
+                            </select>
+                        </td>
+                        <td class="form-field">
+                            <select id="edemaMacular">
+                                <option value="">Seleccione una opción...</option>
+                                <option value="si">Sí</option>
+                                <option value="no">No</option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Pregunta para Nefropatía diabética -->
+    <div class="form-field">
+        <label for="diabeticNephropathy">¿Tiene nefropatía diabética?</label>
+        <select id="diabeticNephropathy" onchange="toggleSection('diabeticNephropathy', 'nephropathySection')">
+            <option value="">Seleccione una opción...</option>
+            <option value="si">Sí</option>
+            <option value="no">No</option>
+        </select>
+    </div>
+
+    <!-- Sección Nefropatía diabética -->
+    <div id="nephropathySection" style="display: none;">
+        <h2>Nefropatía diabética</h2>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>TRR</th>
+                    <th>Trasplante</th>
+                    <th>Creatinina</th>
+                    <th>TFG</th>
+                    <th>Albuminuria</th>
+                    <th>Clasificación</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
+                    <td class="form-field">
+                        <select id="trr">
+                            <option value="">Seleccione una opción...</option>
+                            <option value="hemodialisis">Hemodiálisis</option>
+                            <option value="peritoneal">Peritoneal</option>
+                            <option value="no">No</option>
                         </select>
-                </div>
-                <table class="styled-table">
-                    <thead>
-                        <tr>
-                            <th>Fecha</th>
-                            <th>Síntomas</th>
-                            <th>Intensidad</th>
-                            <th>Localización</th>
-                            <th>Disfunción eréctil</th>
-                            <th>Monofilamento</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
-                            <td><select id="opciones">
-                                <option value="">Seleccione una opción...</option>
-                                <option value="platoCompleto">Parestesia</option>
-                                <option value="medioPlato">Disestesia</option>
-                                <option value="cuartoPlato">Anestesia</option>
-                                <option value="cuartoPlato">Dolor</option>
-                                </select></td>
-                            <td class="form-field">
-                                <select id="opciones">
-                                    <option value="">Escala del dolor</option>
-                                    <!-- Generar opciones de 1 a 6 comidas -->
-                                    <script>
-                                        for (let i = 1; i <= 10; i++) {
-                                            document.write(`<option value="${i}">${i}</option>`);
-                                        }
-                                    </script>
-                                </select>
-                            </td>
-                            <td class="form-field">
-                                <input type="text" id="patientName" name="patientName" required>
-                            </td>
-                            <td class="form-field">
-                                <select id="opciones">
-                                    <option value="">Seleccione una opción...</option>
-                                    <option value="platoCompleto">Si</option>
-                                    <option value="medioPlato">No</option>
-                                </select>
-                            </td>
-                            <td class="form-field">
-                                <select id="opciones">
-                                    <option value="">Seleccione una opción...</option>
-                                    <option value="platoCompleto">Positivo</option>
-                                    <option value="medioPlato">sensible</option>
-                                    <option value="medioPlato">Negativo</option>
-                                </select>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <h2>Pie diabético</h2>
-                <table class="styled-table">
-                    <thead>
-                        <tr>
-                            <th>Fecha</th>
-                            <th>Deformidad</th>
-                            <th>Antecedente de ulcera</th>
-                            <th>Ulcera activa</th>
-                            <th>Antecedente de amputación</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
-                            <td class="form-field">
-                                <input type="text" id="patientName" name="patientName" required>
-                            </td>
-                            <td class="form-field">
-                                <input type="text" id="patientName" name="patientName" required>
-                            </td>
-                            <td class="form-field">
-                                <input type="text" id="patientName" name="patientName" required>
-                            </td>
-                            <td><select id="opciones">
-                                <option value="">Seleccione una opción...</option>
-                                <option value="platoCompleto">Dedos</option>
-                                <option value="medioPlato">Antepié</option>
-                                <option value="cuartoPlato">Infra condílea</option>
-                                <option value="cuartoPlato">Supra condílea</option>
-                                </select></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <h2 class="sombreado">Complicaciones macrovasculares</h2>
-                <h2>Enfermedad Coronaria</h2>
-                <table class="styled-table">
-                    <thead>
-                        <tr>
-                            <th>Fecha</th>
-                            <th>Dx de enfermedad coronaria (Fecha)</th>
-                            <th>Revascularizado</th>
-                            <th>Síntomas</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
-                            <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
-                            <td class="form-field">
-                                <input type="text" id="patientName" name="patientName" required>
-                            </td>
-                            <td><select id="opciones">
-                                <option value="">Seleccione una opción...</option>
-                                <option value="platoCompleto">Disnea</option>
-                                <option value="medioPlato">Angina</option>
-                                <option value="cuartoPlato">Bendopnea</option>
-                                <option value="cuartoPlato">Edemas</option>
-                                </select></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <h2>Insuficiencia cardiaca</h2>
-                <table class="styled-table">
-                    <thead>
-                        <tr>
-                            <th>Fecha</th>
-                            <th>Dx de IC</th>
-                            <th>FEVI</th>
-                            <th>Strain</th>
-                            <th>Sintomas</th>
-                            <th>Clase funcional NYHA</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
-                            <td class="form-field">
-                                <input type="text" id="patientName" name="patientName" required>
-                            </td>
-                            <td class="form-field">
-                                <input type="text" id="patientName" name="patientName" required>
-                            </td>
-                            <td class="form-field">
-                                <input type="text" id="patientName" name="patientName" required>
-                            </td>
-                            <td><select id="opciones">
-                                <option value="">Seleccione una opción...</option>
-                                <option value="platoCompleto">Disnea</option>
-                                <option value="medioPlato">Angina</option>
-                                <option value="cuartoPlato">Bendopnea</option>
-                                <option value="cuartoPlato">Edemas</option>
-                                </select></td>
-                             <td class="form-field">
-                                    <input type="text" id="patientName" name="patientName" required>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <h2>Enfermedad neurológica</h2>
-                <table class="styled-table">
-                    <thead>
-                        <tr>
-                            <th>Fecha</th>
-                            <th>Dx de ACV</th>
-                            <th>Tipo de ACV</th>
-                            <th>Revascularizado</th>
-                            <th>Secuelas</th>
-                            <th>Tipo de secuelas</th>
-                            <th>Isquemia Cerebral transitoria (fecha)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
-                            <td class="form-field">
-                                <input type="text" id="patientName" name="patientName" required>
-                            </td>
-                            <td class="form-field">
-                                <input type="text" id="patientName" name="patientName" required>
-                            </td>
-                            <td class="form-field">
-                                <input type="text" id="patientName" name="patientName" required>
-                            </td>
-                            <td class="form-field">
-                                <input type="text" id="patientName" name="patientName" required>
-                            </td>
-                             <td class="form-field">
-                                    <input type="text" id="patientName" name="patientName" required>
-                            </td>
-                            <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <h2>Fibrilación Auricular</h2>
-                <table class="styled-table">
-                    <thead>
-                        <tr>
-                            <th>Fecha</th>
-                            <th>Dx de FA</th>
-                            <th>Tipo de FA</th>
-                            <th>Anticoagulación</th>
-                            <th>Ablación</th>
-                            <th>Marcapasos</th>
-                            <th>Fecha ultima ekg</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
-                            <td class="form-field">
-                                <input type="text" id="patientName" name="patientName" required>
-                            </td>
-                            <td class="form-field">
-                                <input type="text" id="patientName" name="patientName" required>
-                            </td>
-                            <td class="form-field">
-                                <input type="text" id="patientName" name="patientName" required>
-                            </td>
-                            <td class="form-field">
-                                <input type="text" id="patientName" name="patientName" required>
-                            </td>
-                             <td class="form-field">
-                                    <input type="text" id="patientName" name="patientName" required>
-                            </td>
-                            <td class="form-field">
-                                <input type="text" id="patientName" name="patientName" required>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <h2>Enfermedad vascular periférica</h2>
-                <table class="styled-table">
-                    <thead>
-                        <tr>
-                            <th>Fecha</th>
-                            <th>Dx de EAP</th>
-                            <th>Revascularizado</th>
-                            <th>Pulsos</th>
-                            <th>Claudicación </th>
-                            <th>Marcapasos</th>
-                            <th>Antecedente de amputación (Lugar)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
-                            <td class="form-field">
-                                <input type="text" id="patientName" name="patientName" required>
-                            </td>
-                            <td class="form-field">
-                                <input type="text" id="patientName" name="patientName" required>
-                            </td>
-                            <td class="form-field">
-                                <input type="text" id="patientName" name="patientName" required>
-                            </td>
-                            <td class="form-field">
-                                <input type="text" id="patientName" name="patientName" required>
-                            </td>
-                             <td class="form-field">
-                                    <input type="text" id="patientName" name="patientName" required>
-                            </td>
-                            <td><select id="opciones">
-                                <option value="">Seleccione una opción...</option>
-                                <option value="platoCompleto">Dedos</option>
-                                <option value="medioPlato">Antepié</option>
-                                <option value="cuartoPlato">Infra condílea</option>
-                                <option value="cuartoPlato">Supra condílea</option>
-                                </select>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                    </td>
+                    <td class="form-field">
+                        <select id="transplant">
+                            <option value="">Seleccione una opción...</option>
+                            <option value="si">Sí</option>
+                            <option value="no">No</option>
+                        </select>
+                    </td>
+                    <td class="form-field">
+                        <input type="number" name="creatinine" min="0" max="1000" step="0.01" required>
+                    </td>
+                    <td class="form-field">
+                        <input type="number" name="tfg" min="0" max="1000" step="0.01" required>
+                    </td>
+                    <td class="form-field">
+                        <input type="number" name="albuminuria" min="0" max="1000" step="0.01" required>
+                    </td>
+                    <td class="form-field">
+                        <input type="text" id="classification" name="classification" required>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Pregunta para Neuropatía diabética -->
+     <div class="form-field">
+        <label for="diabeticNeuropathy">¿Tiene neuropatía diabética?</label>
+        <select id="diabeticNeuropathy" onchange="toggleSection('diabeticNeuropathy', 'neuropathySection')">
+            <option value="">Seleccione una opción...</option>
+            <option value="si">Sí</option>
+            <option value="no">No</option>
+        </select>
+    </div>
+    <!-- Sección Neuropatía diabética -->
+    <div id="neuropathySection" style="display: none;">
+        <h2>Neuropatía diabética</h2>
+        <div class="form-field">
+            <label for="sensitiveNeuropathy">Tiene diagnóstico de neuropatía sensitiva:</label>
+            <select id="sensitiveNeuropathy">
+                <option value="">Seleccione una opción...</option>
+                <option value="si">Sí</option>
+                <option value="no">No</option>
+            </select>
+        </div>
+        <div class="form-field">
+            <label for="otherNeuropathies">Otras Neuropatías:</label>
+            <select id="otherNeuropathies">
+                <option value="">Seleccione una opción...</option>
+                <option value="si">Sí</option>
+                <option value="no">No</option>
+            </select>
+        </div>
+        <div class="form-field">
+            <label for="neuropathyType">Tipo de neuropatía:</label>
+            <select id="neuropathyType">
+                <option value="">Seleccione una opción...</option>
+                <option value="disfuncionErectil">Disfunción eréctil</option>
+                <option value="gastroparesia">Gastroparesia</option>
+                <option value="disautonomia">Disautonomía</option>
+                <option value="hipotensionOrtostatica">Hipotensión ortostática</option>
+            </select>
+        </div>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Síntomas</th>
+                    <th>Intensidad</th>
+                    <th>Localización</th>
+                    <th>Disfunción eréctil</th>
+                    <th>Monofilamento</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="form-field"><input type="date" id="symptomDate" name="symptomDate" required></td>
+                    <td>
+                        <select id="symptoms">
+                            <option value="">Seleccione una opción...</option>
+                            <option value="parestesia">Parestesia</option>
+                            <option value="disestesia">Disestesia</option>
+                            <option value="anestesia">Anestesia</option>
+                            <option value="dolor">Dolor</option>
+                        </select>
+                    </td>
+                    <td class="form-field">
+                        <select id="intensity">
+                            <option value="">Escala del dolor</option>
+                            <script>
+                                for (let i = 1; i <= 10; i++) {
+                                    document.write(`<option value="${i}">${i}</option>`);
+                                }
+                            </script>
+                        </select>
+                    </td>
+                    <td class="form-field">
+                        <input type="text" id="localization" name="localization" required>
+                    </td>
+                    <td class="form-field">
+                        <select id="erectileDysfunction">
+                            <option value="">Seleccione una opción...</option>
+                            <option value="si">Sí</option>
+                            <option value="no">No</option>
+                        </select>
+                    </td>
+                    <td class="form-field">
+                        <select id="monofilamento">
+                            <option value="">Seleccione una opción...</option>
+                            <option value="positivo">Positivo</option>
+                            <option value="sensible">Sensible</option>
+                            <option value="negativo">Negativo</option>
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Pregunta para Pie diabético -->
+
+    <div class="form-field">
+        <label for="diabeticFoot">¿Tiene pie diabético?</label>
+        <select id="diabeticFoot" onchange="toggleSection('diabeticFoot', 'footSection')">
+            <option value="">Seleccione una opción...</option>
+            <option value="si">Sí</option>
+            <option value="no">No</option>
+        </select>
+    </div>
+
+    <!-- Sección Pie diabético -->
+    <div id="footSection" style="display: none;">
+        <h2>Pie diabético</h2>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Deformidad</th>
+                    <th>Antecedente de úlcera</th>
+                    <th>Úlcera activa</th>
+                    <th>Antecedente de amputación</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="form-field"><input type="date" id="footDate" name="footDate" required></td>
+                    <td class="form-field">
+                        <input type="text" id="deformity" name="deformity" required>
+                    </td>
+                    <td class="form-field">
+                        <input type="text" id="ulcerHistory" name="ulcerHistory" required>
+                    </td>
+                    <td class="form-field">
+                        <input type="text" id="activeUlcer" name="activeUlcer" required>
+                    </td>
+                    <td>
+                        <select id="amputationHistory">
+                            <option value="">Seleccione una opción...</option>
+                            <option value="dedos">Dedos</option>
+                            <option value="antepie">Antepié</option>
+                            <option value="infraCondilea">Infra condílea</option>
+                            <option value="supraCondilea">Supra condílea</option>
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function toggleSection(selectId, sectionId) {
+            var select = document.getElementById(selectId);
+            var section = document.getElementById(sectionId);
+            if (select.value === 'si') {
+                section.style.display = 'block';
+            } else {
+                section.style.display = 'none';
+            }
+        }
+    </script>
+
+    <h2 class="sombreado">Complicaciones macrovasculares</h2>
+    <!-- Pregunta general para Complicaciones Macrovasculares -->
+     <div class="form-field">
+    <label for="macrovascularComplications">¿Tiene complicaciones macrovasculares?</label>
+    <select id="macrovascularComplications" onchange="toggleSection('macrovascularComplications', 'macrovascularSection')">
+        <option value="">Seleccione una opción...</option>
+        <option value="si">Sí</option>
+        <option value="no">No</option>
+    </select>
+    </div>
+
+    <!-- Sección Complicaciones Macrovasculares -->
+        <div id="macrovascularSection" style="display: none;">
+        
+
+        <!-- Enfermedad Coronaria -->
+         <div class="form-field">
+        <label for="coronaryDisease">¿Sufre de Enfermedad Coronaria?</label>
+        <select id="coronaryDisease" onchange="toggleTable('coronaryDisease', 'coronaryDiseaseTable')">
+            <option value="">Seleccione una opción...</option>
+            <option value="si">Sí</option>
+            <option value="no">No</option>
+        </select>
+        </div>
+
+        <table id="coronaryDiseaseTable" class="styled-table" style="display: none;">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Dx de enfermedad coronaria (Fecha)</th>
+                    <th>Revascularizado</th>
+                    <th>Síntomas</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="form-field"><input type="date" id="coronaryDiseaseDate" name="coronaryDiseaseDate" required></td>
+                    <td class="form-field"><input type="date" id="coronaryDiseaseDxDate" name="coronaryDiseaseDxDate" required></td>
+                    <td class="form-field">
+                        <input type="text" id="coronaryDiseaseRevascularized" name="coronaryDiseaseRevascularized" required>
+                    </td>
+                    <td>
+                        <select id="coronarySymptoms">
+                            <option value="">Seleccione una opción...</option>
+                            <option value="disnea">Disnea</option>
+                            <option value="angina">Angina</option>
+                            <option value="bendopnea">Bendopnea</option>
+                            <option value="edemas">Edemas</option>
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Insuficiencia Cardiaca -->
+         <div class="form-field">
+        <label for="heartFailure">¿Sufre de Insuficiencia Cardiaca?</label>
+        <select id="heartFailure" onchange="toggleTable('heartFailure', 'heartFailureTable')">
+            <option value="">Seleccione una opción...</option>
+            <option value="si">Sí</option>
+            <option value="no">No</option>
+        </select>
+        </div>
+
+        <table id="heartFailureTable" class="styled-table" style="display: none;">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Dx de IC</th>
+                    <th>FEVI</th>
+                    <th>Strain</th>
+                    <th>Síntomas</th>
+                    <th>Clase funcional NYHA</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="form-field"><input type="date" id="heartFailureDate" name="heartFailureDate" required></td>
+                    <td class="form-field"><input type="text" id="heartFailureDx" name="heartFailureDx" required></td>
+                    <td class="form-field"><input type="text" id="fevi" name="fevi" required></td>
+                    <td class="form-field"><input type="text" id="strain" name="strain" required></td>
+                    <td>
+                        <select id="heartFailureSymptoms">
+                            <option value="">Seleccione una opción...</option>
+                            <option value="disnea">Disnea</option>
+                            <option value="angina">Angina</option>
+                            <option value="bendopnea">Bendopnea</option>
+                            <option value="edemas">Edemas</option>
+                        </select>
+                    </td>
+                    <td class="form-field"><input type="text" id="nyhaClass" name="nyhaClass" required></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Enfermedad Neurológica -->
+         <div class="form-field">
+        <label for="neurologicalDisease">¿Sufre de Enfermedad Neurológica?</label>
+        <select id="neurologicalDisease" onchange="toggleTable('neurologicalDisease', 'neurologicalDiseaseTable')">
+            <option value="">Seleccione una opción...</option>
+            <option value="si">Sí</option>
+            <option value="no">No</option>
+        </select>
+        </div>
+
+        <table id="neurologicalDiseaseTable" class="styled-table" style="display: none;">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Dx de ACV</th>
+                    <th>Tipo de ACV</th>
+                    <th>Revascularizado</th>
+                    <th>Secuelas</th>
+                    <th>Tipo de secuelas</th>
+                    <th>Isquemia Cerebral transitoria (fecha)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="form-field"><input type="date" id="neurologicalDiseaseDate" name="neurologicalDiseaseDate" required></td>
+                    <td class="form-field"><input type="text" id="acvDiagnosis" name="acvDiagnosis" required></td>
+                    <td class="form-field"><input type="text" id="acvType" name="acvType" required></td>
+                    <td class="form-field"><input type="text" id="revascularizedNeurological" name="revascularizedNeurological" required></td>
+                    <td class="form-field"><input type="text" id="sequelae" name="sequelae" required></td>
+                    <td class="form-field"><input type="text" id="sequelaeType" name="sequelaeType" required></td>
+                    <td class="form-field"><input type="date" id="transientIschemiaDate" name="transientIschemiaDate" required></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Fibrilación Auricular -->
+        <div class="form-field">
+        <label for="atrialFibrillation">¿Sufre de Fibrilación Auricular?</label>
+        <select id="atrialFibrillation" onchange="toggleTable('atrialFibrillation', 'atrialFibrillationTable')">
+            <option value="">Seleccione una opción...</option>
+            <option value="si">Sí</option>
+            <option value="no">No</option>
+        </select>
+        </div>
+
+        <table id="atrialFibrillationTable" class="styled-table" style="display: none;">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Dx de FA</th>
+                    <th>Tipo de FA</th>
+                    <th>Anticoagulación</th>
+                    <th>Ablación</th>
+                    <th>Marcapasos</th>
+                    <th>Fecha última EKG</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="form-field"><input type="date" id="atrialFibrillationDate" name="atrialFibrillationDate" required></td>
+                    <td class="form-field"><input type="text" id="faDiagnosis" name="faDiagnosis" required></td>
+                    <td class="form-field"><input type="text" id="faType" name="faType" required></td>
+                    <td class="form-field"><input type="text" id="anticoagulation" name="anticoagulation" required></td>
+                    <td class="form-field"><input type="text" id="ablation" name="ablation" required></td>
+                    <td class="form-field"><input type="text" id="pacemaker" name="pacemaker" required></td>
+                    <td class="form-field"><input type="date" id="lastEkgDate" name="lastEkgDate" required></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Enfermedad Vascular Periférica -->
+         <div class="form-field">
+        <label for="peripheralVascularDisease">¿Sufre de Enfermedad Vascular Periférica?</label>
+        <select id="peripheralVascularDisease" onchange="toggleTable('peripheralVascularDisease', 'peripheralVascularDiseaseTable')">
+            <option value="">Seleccione una opción...</option>
+            <option value="si">Sí</option>
+            <option value="no">No</option>
+        </select>
+        </div>
+        
+        <table id="peripheralVascularDiseaseTable" class="styled-table" style="display: none;">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Dx de EAP</th>
+                    <th>Revascularizado</th>
+                    <th>Pulsos</th>
+                    <th>Claudicación</th>
+                    <th>Marcapasos</th>
+                    <th>Antecedente de amputación (Lugar)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="form-field"><input type="date" id="peripheralVascularDiseaseDate" name="peripheralVascularDiseaseDate" required></td>
+                    <td class="form-field"><input type="text" id="eapDiagnosis" name="eapDiagnosis" required></td>
+                    <td class="form-field"><input type="text" id="revascularizedPeripheral" name="revascularizedPeripheral" required></td>
+                    <td class="form-field"><input type="text" id="pulses" name="pulses" required></td>
+                    <td class="form-field"><input type="text" id="claudication" name="claudication" required></td>
+                    <td class="form-field"><input type="text" id="pacemakerPeripheral" name="pacemakerPeripheral" required></td>
+                    <td>
+                        <select id="amputationHistory">
+                            <option value="">Seleccione una opción...</option>
+                            <option value="dedos">Dedos</option>
+                            <option value="antepie">Antepié</option>
+                            <option value="infraCondilea">Infra condílea</option>
+                            <option value="supraCondilea">Supra condílea</option>
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function toggleSection(selectId, sectionId) {
+            var select = document.getElementById(selectId);
+            var section = document.getElementById(sectionId);
+            if (select.value === 'si') {
+                section.style.display = 'block';
+            } else {
+                section.style.display = 'none';
+            }
+        }
+
+        function toggleTable(selectId, tableId) {
+            var select = document.getElementById(selectId);
+            var table = document.getElementById(tableId);
+            if (select.value === 'si') {
+                table.style.display = 'table';
+            } else {
+                table.style.display = 'none';
+            }
+        }
+    </script>
+
+
                 <h2 class="sombreado">Factores De Riesgo Asociados</h2>
                 <table class="styled-table">
                     <thead>
@@ -1485,6 +1747,18 @@
     </main> 
     
     <script>
+
+        function toggleInsulinDetails() {
+                    var insulinSelect = document.getElementById('insulina1');
+                    var insulinDetails = document.getElementById('insulin-details');
+                    
+                    // Mostrar el div si la opción es 'Sí', ocultarlo en caso contrario
+                    if (insulinSelect.value === 'yes') {
+                        insulinDetails.classList.remove('hidden');
+                    } else {
+                        insulinDetails.classList.add('hidden');
+                    }
+                }
 
         function toggleActividadFisicaFields() {
                 const actividadFisicaSelect = document.getElementById('actividadFisica');
