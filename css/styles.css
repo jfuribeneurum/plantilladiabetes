@@ -84,6 +84,8 @@ legend {
     width: 150px;
     margin-right: 10px;
     text-align: left;
+    margin-top: 20px;
+    margin-bottom: 30px;
 }
 
 .form-field input,
