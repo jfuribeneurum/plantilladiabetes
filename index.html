@@ -17,7 +17,7 @@
                     <p>HISTORIA CLÍNICA NEURUM IPS</p>
                     <p>CC Punto clave Local 203</p>
                     <p>Cl. 27 #46-70, Medellín</p>
-                </div>0
+                </div>
 
 
                 <div class="form-header-right">
@@ -26,37 +26,66 @@
             </div>
 
             <!-- Bloque de formulario para la información del paciente -->
-            <fieldset>
-                <legend>Información del Paciente</legend>
-            
-                <div class="form-field">
-                    <label for="consultationDate">Fecha de la Consulta:</label>
-                    <input type="date" id="consultationDate" name="consultationDate" required>
-                </div>
-            
-                <div class="form-field">
-                    <label for="patientId">Identificación:</label>
-                    <input type="text" id="identificacion" name="identificacion" required>
-                    <button type="button" onclick="buscarPaciente()">Buscar</button>
-                </div>
-            
-                <div class="form-field age-field">
-                    <label for="ageYears">Edad:</label>
-                    <input type="number" id="ageYears" name="ageYears" placeholder="Años" disabled>
-                    <input type="number" id="ageMonths" name="ageMonths" placeholder="Meses" disabled >
-                </div>
-            
-                <div class="form-field">
-                    <label for="patientName">Nombre:</label>
-                    <input type="text" id="nombre" name="nombre" disabled>
-                </div>
-            
-                <div class="form-field">
-                    <label for="patientLastname">Apellidos:</label>
-                    <input type="text" id="apellidos" name="apellidos" disabled>
-                </div>
-            </fieldset>
+    <fieldset>
+        <legend>Información del Paciente</legend>
 
+        <div class="form-field">
+            <label for="consultationDate">Fecha de la Consulta:</label>
+            <input type="date" id="consultationDate" name="consultationDate" required>
+        </div>
+
+        <div class="form-field">
+            <label for="identificacion">Identificación:</label>
+            <input type="text" id="identificacion" name="identificacion" required>
+            <button type="button" id="buscarPaciente">Buscar</button>
+        </div>
+
+        <div class="form-field age-field">
+            <label for="ageYears">Edad:</label>
+            <input type="number" id="ageYears" name="ageYears" placeholder="Años" required>
+            <input type="number" id="ageMonths" name="ageMonths" placeholder="Meses" required>
+        </div>
+
+        <div class="form-field">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+        </div>
+
+        <div class="form-field">
+            <label for="apellidos">Apellidos:</label>
+            <input type="text" id="apellidos" name="apellidos" required>
+        </div>
+    </fieldset>
+
+    <script>
+        // Datos de ejemplo de los pacientes
+        const pacientes = [
+            { identificacion: '123456', nombre: 'Juan', apellidos: 'Pérez', ageYears: 30, ageMonths: 6 },
+            { identificacion: '789012', nombre: 'María', apellidos: 'García', ageYears: 25, ageMonths: 3 },
+            // Agrega más pacientes según sea necesario
+        ];
+
+        document.getElementById('buscarPaciente').addEventListener('click', function() {
+            const identificacion = document.getElementById('identificacion').value;
+
+            if (identificacion) {
+                const paciente = pacientes.find(p => p.identificacion === identificacion);
+
+                if (paciente) {
+                    document.getElementById('nombre').value = paciente.nombre;
+                    document.getElementById('apellidos').value = paciente.apellidos;
+                    document.getElementById('ageYears').value = paciente.ageYears;
+                    document.getElementById('ageMonths').value = paciente.ageMonths;
+                } else {
+                    alert('Paciente no encontrado');
+                }
+            } else {
+                alert('Por favor, ingrese una identificación');
+            }
+        });
+    </script>
+
+            
             <fieldset>
                 <legend>Motivo de consulta</legend>
                 <div>
@@ -227,7 +256,7 @@
         <!-- Pregunta para Neuropatía diabética -->
         <div class="form-field">
             <label for="diabeticNeuropathy">¿Tiene Diagnostico de Neuropatia periferica?</label>
-            <select id="diabeticNeuropathy" onchange="toggleSection('diabeticNeuropathy', 'neuropathySection')">
+            <select id="diabeticNeuropathy" >
                 <option value="">Seleccione una opción...</option>
                 <option value="si">Sí</option>
                 <option value="no">No</option>
@@ -235,17 +264,17 @@
         </div>
 
         <!-- Sección Neuropatía diabética -->
-        <div id="neuropathySection" style="display: none;">
+        <div >
             <h2>Sintomas Neuro-sensoriales</h2>
             <!-- Campo de selección para "Dolor" -->
-    <div class="form-field">
-        <label for="sensitiveNeuropathy">Dolor:</label>
-        <select id="sensitiveNeuropathy" name="sensitiveNeuropathy">
-            <option value="">Seleccione una opción...</option>
-            <option value="si">Sí</option>
-            <option value="no">No</option>
-        </select>
-    </div>
+        <div class="form-field">
+            <label for="sensitiveNeuropathy">Dolor:</label>
+            <select id="sensitiveNeuropathy" name="sensitiveNeuropathy">
+                <option value="">Seleccione una opción...</option>
+                <option value="si">Sí</option>
+                <option value="no">No</option>
+            </select>
+        </div>
 
     <!-- Detalles de dolor -->
     <div id="painDetailsTable" class="hidden">
@@ -525,89 +554,289 @@
         </table>
     </div>
 
+    <!-- Nueva sección de "Síntomas Motores" -->
+    <h2>Síntomas Motores</h2>
+
+    <!-- Campo de selección para "Calambres" -->
+    <div class="form-field">
+        <label for="cramps">Calambres:</label>
+        <select id="cramps" name="cramps">
+            <option value="">Seleccione una opción...</option>
+            <option value="si">Sí</option>
+            <option value="no">No</option>
+        </select>
+    </div>
+
+    <!-- Detalles de calambres -->
+    <div id="crampsDetails" class="hidden">
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Localización</th>
+                    <th>Intensidad</th>
+                    <th>Ubicación</th>
+                    <th>Simetría</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <select id="crampsLocation" name="crampsLocation">
+                            <option value="">Seleccione una opción...</option>
+                            <option value="cabeza">Cabeza</option>
+                            <option value="cuello">Cuello</option>
+                            <option value="hombros">Hombros</option>
+                            <option value="brazos">Brazos</option>
+                            <option value="manos">Manos</option>
+                            <option value="torso">Torso</option>
+                            <option value="abdomen">Abdomen</option>
+                            <option value="piernas">Piernas</option>
+                            <option value="pies">Pies</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select id="crampsIntensity" name="crampsIntensity">
+                            <option value="">Seleccione una opción...</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select id="crampsLocationType" name="crampsLocationType">
+                            <option value="">Seleccione una opción...</option>
+                            <option value="distal">Distal</option>
+                            <option value="proximal">Proximal</option>
+                            <option value="ambas">Ambas</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select id="crampsSymmetry" name="crampsSymmetry">
+                            <option value="">Seleccione una opción...</option>
+                            <option value="simetrico">Simétrico</option>
+                            <option value="asimetrico">Asimétrico</option>
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Campo de selección para "Fasciculaciones" -->
+    <div class="form-field">
+        <label for="fasciculations">Fasciculaciones:</label>
+        <select id="fasciculations" name="fasciculations">
+            <option value="">Seleccione una opción...</option>
+            <option value="si">Sí</option>
+            <option value="no">No</option>
+        </select>
+    </div>
+
+    <!-- Detalles de fasciculaciones -->
+    <div id="fasciculationsDetails" class="hidden">
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Localización</th>
+                    <th>Intensidad</th>
+                    <th>Ubicación</th>
+                    <th>Simetría</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <select id="fasciculationsLocation" name="fasciculationsLocation">
+                            <option value="">Seleccione una opción...</option>
+                            <option value="cabeza">Cabeza</option>
+                            <option value="cuello">Cuello</option>
+                            <option value="hombros">Hombros</option>
+                            <option value="brazos">Brazos</option>
+                            <option value="manos">Manos</option>
+                            <option value="torso">Torso</option>
+                            <option value="abdomen">Abdomen</option>
+                            <option value="piernas">Piernas</option>
+                            <option value="pies">Pies</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select id="fasciculationsIntensity" name="fasciculationsIntensity">
+                            <option value="">Seleccione una opción...</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select id="fasciculationsLocationType" name="fasciculationsLocationType">
+                            <option value="">Seleccione una opción...</option>
+                            <option value="distal">Distal</option>
+                            <option value="proximal">Proximal</option>
+                            <option value="ambas">Ambas</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select id="fasciculationsSymmetry" name="fasciculationsSymmetry">
+                            <option value="">Seleccione una opción...</option>
+                            <option value="simetrico">Simétrico</option>
+                            <option value="asimetrico">Asimétrico</option>
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Campo de selección para "Disminución de la Fuerza" -->
+    <div class="form-field">
+        <label for="strengthReduction">Disminución de la Fuerza:</label>
+        <select id="strengthReduction" name="strengthReduction">
+            <option value="">Seleccione una opción...</option>
+            <option value="si">Sí</option>
+            <option value="no">No</option>
+        </select>
+    </div>
+
+    <!-- Detalles de disminución de la fuerza -->
+    <div id="strengthReductionDetails" class="hidden">
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Localización</th>
+                    <th>Intensidad</th>
+                    <th>Ubicación</th>
+                    <th>Simetría</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <select id="strengthReductionLocation" name="strengthReductionLocation">
+                            <option value="">Seleccione una opción...</option>
+                            <option value="cabeza">Cabeza</option>
+                            <option value="cuello">Cuello</option>
+                            <option value="hombros">Hombros</option>
+                            <option value="brazos">Brazos</option>
+                            <option value="manos">Manos</option>
+                            <option value="torso">Torso</option>
+                            <option value="abdomen">Abdomen</option>
+                            <option value="piernas">Piernas</option>
+                            <option value="pies">Pies</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select id="strengthReductionIntensity" name="strengthReductionIntensity">
+                            <option value="">Seleccione una opción...</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select id="strengthReductionLocationType" name="strengthReductionLocationType">
+                            <option value="">Seleccione una opción...</option>
+                            <option value="distal">Distal</option>
+                            <option value="proximal">Proximal</option>
+                            <option value="ambas">Ambas</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select id="strengthReductionSymmetry" name="strengthReductionSymmetry">
+                            <option value="">Seleccione una opción...</option>
+                            <option value="simetrico">Simétrico</option>
+                            <option value="asimetrico">Asimétrico</option>
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
     <script>
-        // Función para mostrar/ocultar detalles de dolor
-        function togglePainDetails() {
-            var painSelect = document.getElementById('sensitiveNeuropathy');
-            var painDetails = document.getElementById('painDetailsTable');
-            
-            if (painSelect.value === 'si') {
-                painDetails.classList.remove('hidden');
-            } else {
-                painDetails.classList.add('hidden');
-            }
+        function toggleDetails(selectId, detailsId) {
+            const selectElement = document.getElementById(selectId);
+            const detailsElement = document.getElementById(detailsId);
+            selectElement.addEventListener('change', function() {
+                if (this.value === 'si') {
+                    detailsElement.classList.remove('hidden');
+                } else {
+                    detailsElement.classList.add('hidden');
+                }
+            });
         }
 
-        // Función para mostrar/ocultar detalles de hormigueo
-        function toggleTinglingDetails() {
-            var tinglingSelect = document.getElementById('tingling');
-            var tinglingDetails = document.getElementById('tinglingDetails');
-            
-            if (tinglingSelect.value === 'si') {
-                tinglingDetails.classList.remove('hidden');
-            } else {
-                tinglingDetails.classList.add('hidden');
-            }
-        }
-
-        // Función para mostrar/ocultar detalles de entumecimiento
-        function toggleNumbnessDetails() {
-            var numbnessSelect = document.getElementById('numbness');
-            var numbnessDetails = document.getElementById('numbnessDetails');
-            
-            if (numbnessSelect.value === 'si') {
-                numbnessDetails.classList.remove('hidden');
-            } else {
-                numbnessDetails.classList.add('hidden');
-            }
-        }
-
-        // Función para mostrar/ocultar detalles de pérdida de sensibilidad
-        function toggleSensitivityLossDetails() {
-            var sensitivityLossSelect = document.getElementById('sensitivityLoss');
-            var sensitivityLossDetails = document.getElementById('sensitivityLossDetails');
-            
-            if (sensitivityLossSelect.value === 'si') {
-                sensitivityLossDetails.classList.remove('hidden');
-            } else {
-                sensitivityLossDetails.classList.add('hidden');
-            }
-        }
-
-        // Inicializar eventos cuando el contenido esté cargado
-        document.addEventListener('DOMContentLoaded', function() {
-            // Asignar eventos de cambio para los selectores
-            document.getElementById('sensitiveNeuropathy').addEventListener('change', togglePainDetails);
-            document.getElementById('tingling').addEventListener('change', toggleTinglingDetails);
-            document.getElementById('numbness').addEventListener('change', toggleNumbnessDetails);
-            document.getElementById('sensitivityLoss').addEventListener('change', toggleSensitivityLossDetails);
-            
-            // Inicializar estado de visibilidad de campos según la carga inicial
-            togglePainDetails();
-            toggleTinglingDetails();
-            toggleNumbnessDetails();
-            toggleSensitivityLossDetails();
-        });
+        toggleDetails('sensitiveNeuropathy', 'painDetailsTable');
+        toggleDetails('tingling', 'tinglingDetails');
+        toggleDetails('numbness', 'numbnessDetails');
+        toggleDetails('sensitivityLoss', 'sensitivityLossDetails');
+        toggleDetails('cramps', 'crampsDetails');
+        toggleDetails('fasciculations', 'fasciculationsDetails');
+        toggleDetails('strengthReduction', 'strengthReductionDetails');
     </script>
             
-            <div class="form-field">
-                <label for="otherNeuropathies">Otras Neuropatías:</label>
-                <select id="otherNeuropathies" name="otherNeuropathies">
-                    <option value="">Seleccione una opción...</option>
-                    <option value="si">Sí</option>
-                    <option value="no">No</option>
-                </select>
-            </div>
-            <div class="form-field">
-                <label for="neuropathyType">Tipo de neuropatía:</label>
-                <select id="neuropathyType" name="neuropathyType">
-                    <option value="">Seleccione una opción...</option>
-                    <option value="disfuncionErectil">Disfunción eréctil</option>
-                    <option value="gastroparesia">Gastroparesia</option>
-                    <option value="disautonomia">Disautonomía</option>
-                    <option value="hipotensionOrtostatica">Hipotensión ortostática</option>
-                </select>
-            </div>
+            <!-- Campo de selección para "Otras Neuropatías" -->
+    <div class="form-field">
+        <label for="otherNeuropathies">Otras Neuropatías:</label>
+        <select id="otherNeuropathies" name="otherNeuropathies">
+            <option value="">Seleccione una opción...</option>
+            <option value="si">Sí</option>
+            <option value="no">No</option>
+        </select>
+    </div>
+
+    <!-- Campo de selección para "Tipo de neuropatía" -->
+    <div class="form-field hidden" id="neuropathyTypeSection">
+        <label for="neuropathyType">Tipo de neuropatía:</label>
+        <select id="neuropathyType" name="neuropathyType">
+            <option value="">Seleccione una opción...</option>
+            <option value="disfuncionErectil">Disfunción eréctil</option>
+            <option value="gastroparesia">Gastroenteroparesia</option>
+            <option value="disautonomia">Disautonomía</option>
+            <option value="hipotensionOrtostatica">Hipotensión ortostática</option>
+            <option value="hipotensionOrtostatica">Mononeuropatias</option>
+            <option value="hipotensionOrtostatica">Sindromes por atrapamiento</option>
+        </select>
+    </div>
+
+    <script>
+        function toggleDetails(selectId, detailsId) {
+            const selectElement = document.getElementById(selectId);
+            const detailsElement = document.getElementById(detailsId);
+            selectElement.addEventListener('change', function() {
+                if (this.value === 'si') {
+                    detailsElement.classList.remove('hidden');
+                } else {
+                    detailsElement.classList.add('hidden');
+                }
+            });
+        }
+
+        // Llamada a la función para condicionar la sección "Tipo de neuropatía"
+        toggleDetails('otherNeuropathies', 'neuropathyTypeSection');
+    </script>
+
+        <!-- 
             <table class="styled-table">
                 <thead>
                     <tr>
@@ -663,10 +892,11 @@
                 </tbody>
             </table>
         </div>
+        -->
 
         <!-- Pregunta para Pie diabético -->
         <div class="form-field">
-            <label for="diabeticFoot">¿Tiene pie diabético?</label>
+            <label for="diabeticFoot">¿pie diabético?</label>
             <select id="diabeticFoot" onchange="toggleSection('diabeticFoot', 'footSection')">
                 <option value="">Seleccione una opción...</option>
                 <option value="si">Sí</option>
@@ -677,7 +907,7 @@
         <!-- Sección Pie diabético -->
         <div id="footSection" style="display: none;">
             <h2>Pie diabético</h2>
-            <table class="styled-table">
+            <!--<table class="styled-table">
                 <thead>
                     <tr>
                         <th>Fecha</th>
@@ -711,44 +941,76 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
-    </div>
-
-    <script>
-        function toggleSection(selectId, sectionId) {
-            var selectElement = document.getElementById(selectId);
-            var sectionElement = document.getElementById(sectionId);
-            if (selectElement.value === "si") {
-                sectionElement.style.display = "block";
-            } else {
-                sectionElement.style.display = "none";
-            }
-        }
-
-        function toggleComplications() {
-            var selectElement = document.getElementById('cmicrovasculares');
-            var sectionElement = document.getElementById('microvascularesSection');
-            if (selectElement.value === "si") {
-                sectionElement.style.display = "block";
-            } else {
-                sectionElement.style.display = "none";
-                hideAllSections();
-            }
-        }
-
-        function hideAllSections() {
-            var sections = ['retinopathySection', 'nephropathySection', 'neuropathySection', 'footSection'];
-            sections.forEach(function(sectionId) {
-                var sectionElement = document.getElementById(sectionId);
-                if (sectionElement) {
-                    sectionElement.style.display = "none";
+            -->
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Antecedente de úlcera</th>
+                        <th id="ulcerLocationHeader" class="hidden">Localización</th>
+                        <th>Antecedente de amputación</th>
+                        <th id="amputationLocationHeader" class="hidden">Localización</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="form-field"><input type="date" id="footDate" name="footDate" required></td>
+                        <td class="form-field">
+                            <select id="ulcerHistory" name="ulcerHistory" onchange="toggleLocationField('ulcerHistory', 'ulcerLocation')">
+                                <option value="">Seleccione una opción...</option>
+                                <option value="si">Sí</option>
+                                <option value="no">No</option>
+                            </select>
+                        </td>
+                        <td class="form-field hidden" id="ulcerLocationCell">
+                            <select id="ulcerLocation" name="ulcerLocation">
+                                <option value="">Seleccione una opción...</option>
+                                <option value="sup">Miembros superiores</option>
+                                <option value="inf">Miembros inferiores</option>
+                            </select>
+                        </td>
+                        <td class="form-field">
+                            <select id="amputationHistory" name="amputationHistory" onchange="toggleLocationField('amputationHistory', 'amputationLocation')">
+                                <option value="">Seleccione una opción...</option>
+                                <option value="si">Sí</option>
+                                <option value="no">No</option>
+                            </select>
+                        </td>
+                        <td class="form-field hidden" id="amputationLocationCell">
+                            <select id="amputationLocation" name="amputationLocation">
+                                <option value="">Seleccione una opción...</option>
+                                <option value="sup">Miembros superiores</option>
+                                <option value="inf">Miembros inferiores</option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        
+            <script>
+                function toggleLocationField(historyId, locationCellId) {
+                    const historySelect = document.getElementById(historyId);
+                    const locationCell = document.getElementById(locationCellId + 'Cell');
+                    const locationHeader = document.getElementById(locationCellId + 'Header');
+                    
+                    if (historySelect.value === 'si') {
+                        locationCell.classList.remove('hidden');
+                        locationHeader.classList.remove('hidden');
+                    } else {
+                        locationCell.classList.add('hidden');
+                        locationHeader.classList.add('hidden');
+                    }
                 }
-            });
-        }
-    </script>
-
+        
+                document.addEventListener('DOMContentLoaded', function() {
+                    toggleLocationField('ulcerHistory', 'ulcerLocation');
+                    toggleLocationField('amputationHistory', 'amputationLocation');
+                });
+            </script>
+    </div>
+    
     <h2 class="sombreado">Complicaciones macrovasculares</h2>
-    <!-- Pregunta general para Complicaciones Macrovasculares -->
+    <!-- Pregunta general para Complicaciones Macrovasculares
      <div class="form-field">
     <label for="macrovascularComplications">¿Tiene complicaciones macrovasculares?</label>
     <select id="macrovascularComplications" onchange="toggleSection('macrovascularComplications', 'macrovascularSection')">
@@ -757,14 +1019,15 @@
         <option value="no">No</option>
     </select>
     </div>
-
+     -->
+    
     <!-- Sección Complicaciones Macrovasculares -->
-        <div id="macrovascularSection" style="display: none;">
+        <div id="macrovascularSection">
         
 
         <!-- Enfermedad Coronaria -->
          <div class="form-field">
-        <label for="coronaryDisease">¿Sufre de Enfermedad Coronaria?</label>
+        <label for="coronaryDisease">¿Enfermedad Coronaria?</label>
         <select id="coronaryDisease" onchange="toggleTable('coronaryDisease', 'coronaryDiseaseTable')">
             <option value="">Seleccione una opción...</option>
             <option value="si">Sí</option>
@@ -786,62 +1049,86 @@
                     <td class="form-field"><input type="date" id="coronaryDiseaseDate" name="coronaryDiseaseDate" required></td>
                     <td class="form-field"><input type="date" id="coronaryDiseaseDxDate" name="coronaryDiseaseDxDate" required></td>
                     <td class="form-field">
-                        <input type="text" id="coronaryDiseaseRevascularized" name="coronaryDiseaseRevascularized" required>
-                    </td>
-                    <td>
                         <select id="coronarySymptoms">
                             <option value="">Seleccione una opción...</option>
-                            <option value="disnea">Disnea</option>
-                            <option value="angina">Angina</option>
-                            <option value="bendopnea">Bendopnea</option>
-                            <option value="edemas">Edemas</option>
+                            <option value="disnea">No</option>
+                            <option value="angina">Bypass</option>
+                            <option value="bendopnea">CAVG</option>
                         </select>
-                    </td>
+                    </td> 
+                    <td><textarea id="descripcion" name="descripcion" rows="2" required></textarea></td>
                 </tr>
             </tbody>
         </table>
 
         <!-- Insuficiencia Cardiaca -->
-         <div class="form-field">
+    <div class="form-field">
         <label for="heartFailure">¿Sufre de Insuficiencia Cardiaca?</label>
         <select id="heartFailure" onchange="toggleTable('heartFailure', 'heartFailureTable')">
             <option value="">Seleccione una opción...</option>
             <option value="si">Sí</option>
             <option value="no">No</option>
         </select>
-        </div>
+    </div>
 
-        <table id="heartFailureTable" class="styled-table" style="display: none;">
-            <thead>
-                <tr>
-                    <th>Fecha</th>
-                    <th>Dx de IC</th>
-                    <th>FEVI</th>
-                    <th>Strain</th>
-                    <th>Síntomas</th>
-                    <th>Clase funcional NYHA</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="form-field"><input type="date" id="heartFailureDate" name="heartFailureDate" required></td>
-                    <td class="form-field"><input type="text" id="heartFailureDx" name="heartFailureDx" required></td>
-                    <td class="form-field"><input type="text" id="fevi" name="fevi" required></td>
-                    <td class="form-field"><input type="text" id="strain" name="strain" required></td>
-                    <td>
-                        <select id="heartFailureSymptoms">
-                            <option value="">Seleccione una opción...</option>
-                            <option value="disnea">Disnea</option>
-                            <option value="angina">Angina</option>
-                            <option value="bendopnea">Bendopnea</option>
-                            <option value="edemas">Edemas</option>
-                        </select>
-                    </td>
-                    <td class="form-field"><input type="text" id="nyhaClass" name="nyhaClass" required></td>
-                </tr>
-            </tbody>
-        </table>
+    <table id="heartFailureTable" class="styled-table" style="display: none;">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Dx de IC (fecha)</th>
+                <th>FEVI</th>
+                <th class="hidden" id="feviPercentageHeader">%</th>
+                <th>Síntomas</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="form-field"><input type="date" id="heartFailureDate" name="heartFailureDate" required></td>
+                <td class="form-field"><input type="date" id="heartFailureDx" name="heartFailureDx" required></td>
+                <td>
+                    <select id="fevi" name="fevi" onchange="toggleFeviPercentage()">
+                        <option value="">Seleccione una opción...</option>
+                        <option value="si">Sí</option>
+                        <option value="no">No</option>
+                    </select>
+                </td>
+                <td class="form-field hidden" id="feviPercentageCell">
+                    <input type="number" id="feviPercentage" name="feviPercentage" min="0" max="100" step="1">
+                </td>
+                <td>
+                    <select id="heartFailureSymptoms" name="heartFailureSymptoms">
+                        <option value="">Seleccione una opción...</option>
+                        <option value="disnea">Disnea</option>
+                        <option value="angina">Angina</option>
+                        <option value="bendopnea">Bendopnea</option>
+                        <option value="edemas">Edemas</option>
+                    </select>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
+    <script>
+        function toggleTable(selectId, tableId) {
+            var selectElement = document.getElementById(selectId);
+            var tableElement = document.getElementById(tableId);
+            tableElement.style.display = selectElement.value === "si" ? "block" : "none";
+        }
+
+        function toggleFeviPercentage() {
+            const feviSelect = document.getElementById('fevi');
+            const feviPercentageCell = document.getElementById('feviPercentageCell');
+            const feviPercentageHeader = document.getElementById('feviPercentageHeader');
+            
+            if (feviSelect.value === 'si') {
+                feviPercentageCell.classList.remove('hidden');
+                feviPercentageHeader.classList.remove('hidden');
+            } else {
+                feviPercentageCell.classList.add('hidden');
+                feviPercentageHeader.classList.add('hidden');
+            }
+        }
+    </script>
         <!-- Enfermedad Neurológica -->
          <div class="form-field">
         <label for="neurologicalDisease">¿Sufre de Enfermedad Neurológica?</label>
@@ -856,23 +1143,32 @@
             <thead>
                 <tr>
                     <th>Fecha</th>
-                    <th>Dx de ACV</th>
+                    <th>Dx de ACV (fecha)</th>
                     <th>Tipo de ACV</th>
+                    <th>Fecha del evento</th>
                     <th>Revascularizado</th>
-                    <th>Secuelas</th>
-                    <th>Tipo de secuelas</th>
-                    <th>Isquemia Cerebral transitoria (fecha)</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td class="form-field"><input type="date" id="neurologicalDiseaseDate" name="neurologicalDiseaseDate" required></td>
-                    <td class="form-field"><input type="text" id="acvDiagnosis" name="acvDiagnosis" required></td>
-                    <td class="form-field"><input type="text" id="acvType" name="acvType" required></td>
-                    <td class="form-field"><input type="text" id="revascularizedNeurological" name="revascularizedNeurological" required></td>
-                    <td class="form-field"><input type="text" id="sequelae" name="sequelae" required></td>
-                    <td class="form-field"><input type="text" id="sequelaeType" name="sequelaeType" required></td>
-                    <td class="form-field"><input type="date" id="transientIschemiaDate" name="transientIschemiaDate" required></td>
+                    <td class="form-field"><input type="date" id="acvDiagnosis" name="acvDiagnosis" required></td>
+                    <td>
+                        <select id="heartFailureSymptoms" name="heartFailureSymptoms">
+                            <option value="">Seleccione una opción...</option>
+                            <option value="disnea">Hemorragico</option>
+                            <option value="angina">Isquemico</option>
+                            <option value="bendopnea">ICT</option>
+                        </select>
+                    </td>
+                    <td class="form-field"><input type="date" id="revascularizedNeurological" name="revascularizedNeurological" required></td>
+                    <td>
+                        <select id="heartFailureSymptoms" name="heartFailureSymptoms">
+                            <option value="">Seleccione una opción...</option>
+                            <option value="disnea">Si</option>
+                            <option value="angina">No</option>
+                        </select>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -887,7 +1183,7 @@
         </select>
         </div>
 
-        <table id="atrialFibrillationTable" class="styled-table" style="display: none;">
+         <!--<table id="atrialFibrillationTable" class="styled-table" style="display: none;">
             <thead>
                 <tr>
                     <th>Fecha</th>
@@ -910,7 +1206,7 @@
                     <td class="form-field"><input type="date" id="lastEkgDate" name="lastEkgDate" required></td>
                 </tr>
             </tbody>
-        </table>
+        </table>-->
 
         <!-- Enfermedad Vascular Periférica -->
          <div class="form-field">
@@ -926,35 +1222,19 @@
             <thead>
                 <tr>
                     <th>Fecha</th>
-                    <th>Dx de EAP</th>
+                    <th>Dx de EAP (fecha)</th>
                     <th>Revascularizado</th>
-                    <th>Pulsos</th>
-                    <th>Claudicación</th>
-                    <th>Marcapasos</th>
-                    <th>Antecedente de amputación (Lugar)</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td class="form-field"><input type="date" id="peripheralVascularDiseaseDate" name="peripheralVascularDiseaseDate" required></td>
-                    <td class="form-field"><input type="text" id="eapDiagnosis" name="eapDiagnosis" required></td>
+                    <td class="form-field"><input type="date" id="eapDiagnosis" name="eapDiagnosis" required></td>
                     <td class="form-field"><input type="text" id="revascularizedPeripheral" name="revascularizedPeripheral" required></td>
-                    <td class="form-field"><input type="text" id="pulses" name="pulses" required></td>
-                    <td class="form-field"><input type="text" id="claudication" name="claudication" required></td>
-                    <td class="form-field"><input type="text" id="pacemakerPeripheral" name="pacemakerPeripheral" required></td>
-                    <td>
-                        <select id="amputationHistory">
-                            <option value="">Seleccione una opción...</option>
-                            <option value="dedos">Dedos</option>
-                            <option value="antepie">Antepié</option>
-                            <option value="infraCondilea">Infra condílea</option>
-                            <option value="supraCondilea">Supra condílea</option>
-                        </select>
-                    </td>
                 </tr>
             </tbody>
         </table>
-    </div>
+    
 
     <script>
         function toggleSection(selectId, sectionId) {
@@ -977,50 +1257,153 @@
             }
         }
     </script>
-
+</div>
 
                 <h2 class="sombreado">Factores De Riesgo Asociados</h2>
-                <table class="styled-table">
-                    <thead>
-                        <tr>
-                            <th>Fecha</th>
-                            <th>HTA fecha</th>
-                            <th>Dislipidemia fecha</th>
-                            <th>Esteatosis Hepática</th>
-                            <th>FIB 4</th>
-                            <th>SAHOS</th>
-                            <th>Tabaquismo (IPA)</th>
-                            <th>Obesidad (IMC)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="form-field"><input type="date" id="consultationDate" name="consultationDate" required></td>
-                            <td class="form-field">
-                                <input type="text" id="patientName" name="patientName" required>
-                            </td>
-                            <td class="form-field">
-                                <input type="text" id="patientName" name="patientName" required>
-                            </td>
-                            <td class="form-field">
-                                <input type="text" id="patientName" name="patientName" required>
-                            </td>
-                            <td class="form-field">
-                                <input type="text" id="patientName" name="patientName" required>
-                            </td>
-                             <td class="form-field">
-                                    <input type="text" id="patientName" name="patientName" required>
-                            </td>
-                            <td class="form-field">
-                                <input type="text" id="patientName" name="patientName" required>
-                            </td>
-                            <td class="form-field">
-                                <input type="text" id="patientName" name="patientName" required>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <a href="https://www.mdcalc.com/calc/2200/fibrosis-4-fib-4-index-liver-fibrosis" target="_blank" class="styled-link">Calculadora de índice FIB-4 en MDCalc</a>
+                <!-- Pregunta para HTA -->
+    <div class="form-field">
+        <label for="hta">¿Tiene HTA?</label>
+        <select id="hta" onchange="toggleTable('hta', 'htaTable')">
+            <option value="">Seleccione una opción...</option>
+            <option value="si">Sí</option>
+            <option value="no">No</option>
+        </select>
+    </div>
+
+    <!-- Tabla para HTA -->
+    <table id="htaTable" class="styled-table hidden">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>HTA (fecha)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="form-field"><input type="date" id="htaConsultationDate" name="htaConsultationDate" required></td>
+                <td class="form-field"><input type="date" id="htaDate" name="htaDate" required></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Pregunta para Dislipidemia -->
+    <div class="form-field">
+        <label for="dislipidemia">¿Tiene Dislipidemia?</label>
+        <select id="dislipidemia" onchange="toggleTable('dislipidemia', 'dislipidemiaTable')">
+            <option value="">Seleccione una opción...</option>
+            <option value="si">Sí</option>
+            <option value="no">No</option>
+        </select>
+    </div>
+
+    <!-- Tabla para Dislipidemia -->
+    <table id="dislipidemiaTable" class="styled-table hidden">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Dislipidemia (fecha)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="form-field"><input type="date" id="dislipidemiaConsultationDate" name="dislipidemiaConsultationDate" required></td>
+                <td class="form-field"><input type="date" id="dislipidemiaDate" name="dislipidemiaDate" required></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Pregunta para Esteatosis Hepática -->
+    <div class="form-field">
+        <label for="esteatosis">¿Tiene Esteatosis Hepática?</label>
+        <select id="esteatosis" onchange="toggleTable('esteatosis', 'esteatosisTable')">
+            <option value="">Seleccione una opción...</option>
+            <option value="si">Sí</option>
+            <option value="no">No</option>
+        </select>
+    </div>
+
+    <!-- Tabla para Esteatosis Hepática y FIB 4 -->
+    <table id="esteatosisTable" class="styled-table hidden">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Esteatosis Hepática</th>
+                <th>FIB 4</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="form-field"><input type="date" id="esteatosisConsultationDate" name="esteatosisConsultationDate" required></td>
+                <td class="form-field"><input type="text" id="esteatosisHepatica" name="esteatosisHepatica" required></td>
+                <td class="form-field"><input type="text" id="fib4Value" name="fib4Value" required></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Pregunta para SAHOS -->
+    <div class="form-field">
+        <label for="sahos">¿Tiene SAHOS?</label>
+        <select id="sahos" onchange="toggleTable('sahos', 'sahosTable')">
+            <option value="">Seleccione una opción...</option>
+            <option value="si">Sí</option>
+            <option value="no">No</option>
+        </select>
+    </div>
+
+    <!-- Tabla para SAHOS -->
+    <table id="sahosTable" class="styled-table hidden">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>SAHOS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="form-field"><input type="date" id="sahosConsultationDate" name="sahosConsultationDate" required></td>
+                <td class="form-field"><input type="text" id="sahosValue" name="sahosValue" required></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Pregunta para Tabaquismo -->
+    <div class="form-field">
+        <label for="tabaquismo">¿Tiene Tabaquismo?</label>
+        <select id="tabaquismo" onchange="toggleTable('tabaquismo', 'tabaquismoTable')">
+            <option value="">Seleccione una opción...</option>
+            <option value="si">Sí</option>
+            <option value="no">No</option>
+            <option value="exfumador">Exfumador</option>
+        </select>
+    </div>
+
+    <!-- Tabla para Tabaquismo -->
+    <table id="tabaquismoTable" class="styled-table hidden">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th># de cig/día</th>
+                <th>Años fumando</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="form-field"><input type="date" id="tabaquismoConsultationDate" name="tabaquismoConsultationDate" required></td>
+                <td class="form-field"><input type="number" id="cigPerDay" name="cigPerDay" required></td>
+                <td class="form-field"><input type="number" id="yearsSmoking" name="yearsSmoking" required></td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <script>
+        function toggleTable(selectId, tableId) {
+            const selectElement = document.getElementById(selectId);
+            const tableElement = document.getElementById(tableId);
+            tableElement.classList.toggle('hidden', selectElement.value !== 'si' && selectElement.value !== 'exfumador');
+        }
+    </script>
+                
                 <h2 class="sombreado">Comorbilidades</h2>
                 <table class="styled-table">
                     <thead>
@@ -2113,7 +2496,9 @@
             </fieldset>
                 
             <button type="submit">Enviar</button>
+        -
         </form>
+    
     </main> 
     
     <script> // Función para mostrar/ocultar detalles de insulina
